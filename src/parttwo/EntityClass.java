@@ -17,7 +17,7 @@ public class EntityClass {
   private final double length;
   private final double height;
   private final String color;
-  private final int catagoryNumber;
+  private final int categoryNumber;
   private final int price;
   private int amountInStorage;
 
@@ -37,14 +37,14 @@ public class EntityClass {
    * @param color           The color of the item. Must be a string.
    * @param amountInStorage The amount of the item in storage. Must be a positive integer. It must
    *                        be greater than zero.
-   * @param catagoryNumber  The catagory number of the item. Must be a positive integer. It must be
+   * @param categoryNumber  The category number of the item. Must be a positive integer. It must be
    *                        between 1 and 4.
    */
 
   public EntityClass(String itemNumber, String description, int price, String brandName,
       double weight, double length, double height, String color,
-      int amountInStorage, int catagoryNumber) {
-    checkValues(price, weight, length, height, amountInStorage, catagoryNumber);
+      int amountInStorage, int categoryNumber) {
+    checkValues(price, weight, length, height, amountInStorage, categoryNumber);
     checkStrings(itemNumber, description, brandName, color);
     this.itemNumber = itemNumber;
     this.description = description;
@@ -54,7 +54,7 @@ public class EntityClass {
     this.length = length;
     this.height = height;
     this.color = color;
-    this.catagoryNumber = catagoryNumber;
+    this.categoryNumber = categoryNumber;
     this.amountInStorage = amountInStorage;
   }
 
@@ -72,12 +72,12 @@ public class EntityClass {
    *                        than 0 and less than 1000.
    * @param amountInStorage The amount of the item in storage. Must be a positive integer. It must
    *                        be greater than 0.
-   * @param catagoryNumber  The catagory number of the item. Must be a positive integer. It must be
+   * @param categoryNumber  The category number of the item. Must be a positive integer. It must be
    *                        between 1 and 4.
    */
 
   private void checkValues(int price, double weight, double length, double height,
-      int amountInStorage, int catagoryNumber) {
+      int amountInStorage, int categoryNumber) {
     if (price < 0 || price > 100000) {
       throw new IllegalArgumentException("The price must be between 0 and 1000000");
     }
@@ -98,8 +98,8 @@ public class EntityClass {
       throw new IllegalArgumentException("The amount in storage must be greater than zero");
     }
 
-    if (catagoryNumber < 1 || catagoryNumber > 4) {
-      throw new IllegalArgumentException("The catagory number must be between 1 and 4");
+    if (categoryNumber < 1 || categoryNumber > 4) {
+      throw new IllegalArgumentException("The category number must be between 1 and 4");
     }
   }
 
@@ -249,12 +249,12 @@ public class EntityClass {
   }
 
   /**
-   * This method is used to get the catagory number of the item.
+   * This method is used to get the category number of the item.
    *
-   * @return The catagory number of the item. Returns an integer.
+   * @return The category number of the item. Returns an integer.
    */
-  public int getCatagoryNumber() {
-    return catagoryNumber;
+  public int getCategoryNumber() {
+    return categoryNumber;
   }
 
   @Override
@@ -263,6 +263,6 @@ public class EntityClass {
         + getDescription() + "\nPrice: " + getPrice() + "\nBrand name: " + getBrandName()
         + "\nWeight: " + getWeight() + "\nLength: " + getLength() + "\nHeight: " + getHeight()
         + "\nColor: " + getColor() + "\nAmount in storage: " + getAmountInStorage()
-        + "\nCatagory number: " + getCatagoryNumber();
+        + "\nCategory number: " + getCategoryNumber();
   }
 }
