@@ -11,13 +11,20 @@ import java.util.List;
  * @author Isak Mandal
  * @version 1.0
  */
-public class ItemRegister extends EntityClass {
+public class ItemRegister {
 
-  private List<EntityClass> itemList = new ArrayList<>();
+  private ArrayList<EntityClass> itemList;
 
   /**
    * This is the constructor for the ItemRegister. It takes in all the parameters that are needed to
    * create an object of this class.
+   */
+  public ItemRegister() {
+    itemList = new ArrayList<EntityClass>();
+  }
+
+  /**
+   * This method is used to add an item to the itemList.
    *
    * @param itemNumber      The item number of the item. Must be a string. Can contain numbers and
    *                        letters
@@ -33,20 +40,11 @@ public class ItemRegister extends EntityClass {
    * @param categoryNumber  The category number of the item. Must be a positive integer. It must be
    *                        between 1 and 4.
    */
-  public ItemRegister(String itemNumber, String description, int price, String brandName,
+  public void addItem(String itemNumber, String description, int price, String brandName,
       double weight, double length, double height, String color, int amountInStorage,
       int categoryNumber) {
-    super(itemNumber, description, price, brandName, weight, length, height, color, amountInStorage,
-        categoryNumber);
-  }
-
-  /**
-   * This method is used to add an item to the itemList.
-   *
-   * @param item The item that is to be added to the itemList.
-   */
-  public void addItem(EntityClass item) {
-    itemList.add(item);
+    itemList.add(new EntityClass(itemNumber, description, price, brandName, weight, length, height,
+        color, amountInStorage, categoryNumber));
   }
 
   /**
@@ -55,7 +53,27 @@ public class ItemRegister extends EntityClass {
    * @return The itemList.
    */
   public List<EntityClass> getItemList() {
+    itemList = new ArrayList<EntityClass>();
+    for (EntityClass item : itemList) {
+      itemList.add(item);
+    }
     return itemList;
+  }
+
+  /**
+   * This method is used to get an item from the itemList.
+   *
+   * @param itemNumber The item number of the item that is to be retrieved. Must be a string. Can
+   *                   contain numbers and letters.
+   * @return The item that has the item number that was entered.
+   */
+  public EntityClass getItem(String itemNumber) {
+    for (EntityClass item : itemList) {
+      if (item.getItemNumber().equals(itemNumber)) {
+        return item;
+      }
+    }
+    return null;
   }
 
   /**
@@ -122,5 +140,9 @@ public class ItemRegister extends EntityClass {
         item.setAmountInStorage(item.getAmountInStorage() - amount);
       }
     }
+  }
+
+  public String toString() {
+    return "ItemRegister{" + "itemList=" + itemList + '}';
   }
 }

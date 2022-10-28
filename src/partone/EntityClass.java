@@ -11,14 +11,14 @@ package partone;
 public class EntityClass {
 
   private final String itemNumber;
-  private final String description;
+  private String description;
   private final String brandName;
   private final double weight;
   private final double length;
   private final double height;
   private final String color;
   private final int catagoryNumber;
-  private final int price;
+  private int price;
   private int amountInStorage;
 
 
@@ -180,7 +180,7 @@ public class EntityClass {
    *
    * @return The price of the item. Returns a double.
    */
-  public double getPrice() {
+  public int getPrice() {
     return price;
   }
 
