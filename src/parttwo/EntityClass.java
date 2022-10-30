@@ -5,20 +5,20 @@ package parttwo;
  * methods and a few set methods for each object that is created.
  *
  * @author Isak Mandal
- * @version 1.0
+ * @version 2.0
  */
 
 public class EntityClass {
 
   private final String itemNumber;
-  private final String description;
+  private String description;
   private final String brandName;
   private final double weight;
   private final double length;
   private final double height;
   private final String color;
   private final int categoryNumber;
-  private final int price;
+  private int price;
   private int amountInStorage;
 
 
@@ -176,13 +176,38 @@ public class EntityClass {
   }
 
   /**
+   * This method is used to give a new description for the item.
+   *
+   * @param description The new description of the item. Must be a string. Can contain all
+   * @return The new description of the item. Returns a string.
+   */
+  public String setDescription(String description) {
+    this.description = description;
+    return description;
+  }
+
+  /**
    * This method is used to get the price of the item.
    *
    * @return The price of the item. Returns a double.
    */
-  public double getPrice() {
+  public int getPrice() {
     return price;
   }
+
+  /**
+   * This method is used to set a new price for the item.
+   *
+   * @param price The new price of the item. Must be a positive integer. It must be greater than 0
+   *              and less than 100000.
+   */
+  public void setPrice(int price) {
+    if (price < 0 || price > 100000) {
+      throw new IllegalArgumentException("The price must be between 0 and 1000000");
+    }
+    this.price = price;
+  }
+
 
   /**
    * This method is used to get the brand name of the item.
