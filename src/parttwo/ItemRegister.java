@@ -20,7 +20,7 @@ public class ItemRegister {
    * create an object of this class.
    */
   public ItemRegister() {
-    itemList = new ArrayList<EntityClass>();
+    itemList = new ArrayList<>();
   }
 
   /**
@@ -40,24 +40,13 @@ public class ItemRegister {
    * @param categoryNumber  The category number of the item. Must be a positive integer. It must be
    *                        between 1 and 4.
    */
-  public void addItem(String itemNumber, String description, int price, String brandName,
+  public void addItem(String itemNumber, String description, int price, int discount,
+      String brandName,
       double weight, double length, double height, String color, int amountInStorage,
       int categoryNumber) {
-    itemList.add(new EntityClass(itemNumber, description, price, brandName, weight, length, height,
-        color, amountInStorage, categoryNumber));
-  }
-
-  /**
-   * This method is used to get the itemList.
-   *
-   * @return The itemList.
-   */
-  public List<EntityClass> getItemList() {
-    itemList = new ArrayList<EntityClass>();
-    for (EntityClass item : itemList) {
-      itemList.add(item);
-    }
-    return itemList;
+    itemList.add(
+        new EntityClass(itemNumber, description, price, discount, brandName, weight, length, height,
+            color, amountInStorage, categoryNumber));
   }
 
   /**
@@ -77,12 +66,31 @@ public class ItemRegister {
   }
 
   /**
+   * This method is used to get the itemList.
+   *
+   * @return The itemList.
+   */
+  public List<EntityClass> getItemList() {
+    ArrayList<EntityClass> itemListCopy = new ArrayList<>();
+    for (EntityClass item : itemList) {
+      itemListCopy.add(item);
+    }
+    return itemListCopy;
+  }
+
+
+  /**
    * This method is used to remove items form the itemList.
    *
-   * @param item The item that is to be removed from the itemList.
+   * @param itemNumber The item that is to be removed from the itemList.
    */
-  public void removeItem(EntityClass item) {
-    itemList.remove(item);
+  public void removeItem(String itemNumber) {
+    for (EntityClass item : itemList) {
+      if (item.getItemNumber().equals(itemNumber)) {
+        itemList.remove(item);
+        break;
+      }
+    }
   }
 
   /**
@@ -142,7 +150,46 @@ public class ItemRegister {
     }
   }
 
-  public String toString() {
-    return "ItemRegister{" + "itemList=" + itemList + '}';
+  /**
+   *
+   */
+  public void updatePrice(String itemNumber, int price) {
+    for (EntityClass item : itemList) {
+      if (item.getItemNumber().equals(itemNumber)) {
+        item.setPrice(price);
+      }
+    }
+  }
+
+  public void updateDiscount(String itemNumber, int discount) {
+    for (EntityClass item : itemList) {
+      if (item.getItemNumber().equals(itemNumber)) {
+        item.setDiscount(discount);
+      }
+    }
+  }
+
+  public void itemOnSale(String itemNumber, int discount) {
+    for (EntityClass item : itemList) {
+      if (item.getItemNumber().equals(itemNumber)) {
+        item.setPrice(item.getPrice() - (item.getPrice() * item.getDiscount() / 100));
+      }
+    }
+  }
+
+  public void itemOffSale(String itemNumber) {
+    for (EntityClass item : itemList) {
+      if (item.getItemNumber().equals(itemNumber)) {
+        item.setPrice(item.getPrice() + (item.getPrice() * item.getDiscount() / 100));
+      }
+    }
+  }
+
+  public void updateDescription(String itemNumber, String description) {
+    for (EntityClass item : itemList) {
+      if (item.getItemNumber().equals(itemNumber)) {
+        item.setDescription(description);
+      }
+    }
   }
 }

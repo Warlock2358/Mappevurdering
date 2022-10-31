@@ -12,13 +12,15 @@ public class EntityClass {
 
   private final String itemNumber;
   private String description;
+  private int price;
+  private int discount;
   private final String brandName;
   private final double weight;
   private final double length;
   private final double height;
   private final String color;
   private final int categoryNumber;
-  private int price;
+
   private int amountInStorage;
 
 
@@ -30,6 +32,7 @@ public class EntityClass {
    *                        letters
    * @param description     The description of the item. Must be a string.
    * @param price           The price of the item. Must be a positive integer.
+   * @param discount        The discount of the item. Must be a positive integer.
    * @param brandName       The brand name of the item. Must be a string.
    * @param weight          The weight of the item. Must be a positive double.
    * @param length          The length of the item. Must be a positive double.
@@ -41,14 +44,16 @@ public class EntityClass {
    *                        between 1 and 4.
    */
 
-  public EntityClass(String itemNumber, String description, int price, String brandName,
+  public EntityClass(String itemNumber, String description, int price, int discount,
+      String brandName,
       double weight, double length, double height, String color,
       int amountInStorage, int categoryNumber) {
-    checkValues(price, weight, length, height, amountInStorage, categoryNumber);
+    checkValues(price, discount, weight, length, height, amountInStorage, categoryNumber);
     checkStrings(itemNumber, description, brandName, color);
     this.itemNumber = itemNumber;
     this.description = description;
     this.price = price;
+    this.discount = discount;
     this.brandName = brandName;
     this.weight = weight;
     this.length = length;
@@ -64,6 +69,8 @@ public class EntityClass {
    *
    * @param price           The price of the item. Must be a positive integer. It must be greater
    *                        than 0 and less than 100000.
+   * @param discount        The discount of the item. Must be a positive integer. It must be between
+   *                        0 and 100.
    * @param weight          The weight of the item. Must be a positive double. It must be greater
    *                        than 0 and less than 100000.
    * @param length          The length of the item. Must be a positive double. It must be greater
@@ -76,10 +83,14 @@ public class EntityClass {
    *                        between 1 and 4.
    */
 
-  private void checkValues(int price, double weight, double length, double height,
+  private void checkValues(int price, int discount, double weight, double length, double height,
       int amountInStorage, int categoryNumber) {
     if (price < 0 || price > 100000) {
       throw new IllegalArgumentException("The price must be between 0 and 1000000");
+    }
+
+    if (discount < 0 || discount > 100) {
+      throw new IllegalArgumentException("The discount must be between 0 and 100");
     }
 
     if (weight < 0 || weight > 100000) {
@@ -115,7 +126,7 @@ public class EntityClass {
    */
   private void checkStrings(String itemNumber, String description, String brandName,
       String color) {
-    if (itemNumber.isEmpty() || description.isEmpty() || brandName.isEmpty() || color.isEmpty()) {
+    if (itemNumber.isBlank() || description.isBlank() || brandName.isBlank() || color.isBlank()) {
       throw new IllegalArgumentException("The item number, description, brand name and color must "
           + "not be empty");
     }
@@ -128,7 +139,7 @@ public class EntityClass {
     }
 
     for (int i = 0; i < brandName.length(); i++) {
-      if (!Character.isAlphabetic(brandName.charAt(i))) {
+      if (!Character.isAlphabetic(brandName.charAt(i)) && brandName.charAt(i) != ' ') {
         throw new IllegalArgumentException("The brand name must only contain letters");
       }
     }
@@ -206,6 +217,17 @@ public class EntityClass {
       throw new IllegalArgumentException("The price must be between 0 and 1000000");
     }
     this.price = price;
+  }
+
+  public int getDiscount() {
+    return discount;
+  }
+
+  public void setDiscount(int discount) {
+    if (discount < 0 || discount > 100) {
+      throw new IllegalArgumentException("The discount must be between 0 and 100");
+    }
+    this.discount = discount;
   }
 
 
@@ -288,6 +310,6 @@ public class EntityClass {
         + getDescription() + "\nPrice: " + getPrice() + "\nBrand name: " + getBrandName()
         + "\nWeight: " + getWeight() + "\nLength: " + getLength() + "\nHeight: " + getHeight()
         + "\nColor: " + getColor() + "\nAmount in storage: " + getAmountInStorage()
-        + "\nCategory number: " + getCategoryNumber();
+        + "\nCategory number: " + getCategoryNumber() + "\n";
   }
 }
