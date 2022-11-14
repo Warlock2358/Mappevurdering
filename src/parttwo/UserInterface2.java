@@ -2,8 +2,22 @@ package parttwo;
 
 import java.util.Scanner;
 
-public class TestClient2 {
+/**
+ * This class is the user interface for the Warehouse management system. It has several methods that
+ * interact with the user.
+ *
+ * @author Isak Mandal
+ * @version 1.0
+ */
+public class UserInterface2 {
 
+  /**
+   * This is the main method for the UserInterface class. It is used to create an object of the
+   * ItemRegister class. It also creates an object of the Scanner class. It then calls the menu
+   * method.
+   *
+   * @param args The arguments that are entered when the program is run.
+   */
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     ItemRegister2 itemRegister2 = new ItemRegister2();
@@ -27,41 +41,36 @@ public class TestClient2 {
           System.out.println("quit - quits the program");
         }
         case "register" -> {
-//          System.out.println("Enter item number: ");
-//          String itemNumber = scanner.nextLine();
-//          System.out.println("Enter description: ");
-//          String description = scanner.nextLine();
-//          System.out.println("Enter price: ");
-//          int price = scanner.nextInt();
-//          scanner.nextLine();
-//          System.out.println("Enter brand name: ");
-//          String brandName = scanner.nextLine();
-//          System.out.println("Enter weight: ");
-//          double weight = scanner.nextDouble();
-//          System.out.println("Enter length: ");
-//          double length = scanner.nextDouble();
-//          System.out.println("Enter height: ");
-//          double height = scanner.nextDouble();
-//          scanner.nextLine();
-//          System.out.println("Enter color: ");
-//          String color = scanner.nextLine();
-//          System.out.println("Enter amount in storage: ");
-//          int amountInStorage = scanner.nextInt();
-//          System.out.println("Enter category number: ");
-//          int categoryNumber = scanner.nextInt();
-//          scanner.nextLine();
-//          try {
-//            itemRegister.addItem(itemNumber, description, price, brandName, weight, length, height,
-//                color, amountInStorage, categoryNumber);
-//          } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//          }
+          System.out.println("Enter item number: ");
+          String itemNumber = scanner.nextLine();
+          System.out.println("Enter description: ");
+          String description = scanner.nextLine();
+          System.out.println("Enter price: ");
+          int price = scanner.nextInt();
+          scanner.nextLine();
+          System.out.println("Enter discount: ");
+          int discount = scanner.nextInt();
+          scanner.nextLine();
+          System.out.println("Enter brand name: ");
+          String brandName = scanner.nextLine();
+          System.out.println("Enter weight: ");
+          double weight = scanner.nextDouble();
+          System.out.println("Enter length: ");
+          double length = scanner.nextDouble();
+          System.out.println("Enter height: ");
+          double height = scanner.nextDouble();
+          scanner.nextLine();
+          System.out.println("Enter color: ");
+          String color = scanner.nextLine();
+          System.out.println("Enter amount in storage: ");
+          int amountInStorage = scanner.nextInt();
+          System.out.println("Enter category number: ");
+          int categoryNumber = scanner.nextInt();
+          scanner.nextLine();
           try {
-            itemRegister2.addItem("123", "Hello this is a test", 100, 0, "Test", 1.0, 1.0, 1.0,
-                "Red",
-                1, 1);
-            itemRegister2.addItem("124", "Hello this is a test2", 101, 0, "Test two", 2.0, 2.0, 2.0,
-                "Blue", 2, 2);
+            itemRegister2.addItem(itemNumber, description, price, discount, brandName, weight,
+                length, height,
+                color, amountInStorage, categoryNumber);
           } catch (Exception e) {
             System.out.println(e.getMessage());
           }

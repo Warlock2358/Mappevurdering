@@ -8,7 +8,7 @@ package parttwo;
  * @version 2.0
  */
 
-public class EntityClass {
+public class Item2 {
 
   private final String itemNumber;
   private String description;
@@ -44,7 +44,7 @@ public class EntityClass {
    *                        between 1 and 4.
    */
 
-  public EntityClass(String itemNumber, String description, int price, int discount,
+  public Item2(String itemNumber, String description, int price, int discount,
       String brandName,
       double weight, double length, double height, String color,
       int amountInStorage, int categoryNumber) {
@@ -190,11 +190,9 @@ public class EntityClass {
    * This method is used to give a new description for the item.
    *
    * @param description The new description of the item. Must be a string. Can contain all
-   * @return The new description of the item. Returns a string.
    */
-  public String setDescription(String description) {
+  public void setDescription(String description) {
     this.description = description;
-    return description;
   }
 
   /**
@@ -230,6 +228,9 @@ public class EntityClass {
     this.discount = discount;
   }
 
+  public double getDiscountedPrice() {
+    return price - ((double) price * discount / 100);
+  }
 
   /**
    * This method is used to get the brand name of the item.
@@ -306,10 +307,19 @@ public class EntityClass {
 
   @Override
   public String toString() {
-    return "\nItem information:" + "\nItem number: " + getItemNumber() + "\nDescription: "
-        + getDescription() + "\nPrice: " + getPrice() + "\nBrand name: " + getBrandName()
-        + "\nWeight: " + getWeight() + "\nLength: " + getLength() + "\nHeight: " + getHeight()
-        + "\nColor: " + getColor() + "\nAmount in storage: " + getAmountInStorage()
-        + "\nCategory number: " + getCategoryNumber() + "\n";
+    if (discount == 0) {
+      return "\nItem information:" + "\nItem number: " + getItemNumber() + "\nDescription: "
+          + getDescription() + "\nPrice: " + getPrice() + "\nBrand name: " + getBrandName()
+          + "\nWeight: " + getWeight() + "\nLength: " + getLength() + "\nHeight: " + getHeight()
+          + "\nColor: " + getColor() + "\nAmount in storage: " + getAmountInStorage()
+          + "\nCategory number: " + getCategoryNumber();
+    } else {
+      return "\nItem information:" + "\nItem number: " + getItemNumber() + "\nDescription: "
+          + getDescription() + "\nPrice: " + getDiscountedPrice() + "\nBrand name: "
+          + getBrandName()
+          + "\nWeight: " + getWeight() + "\nLength: " + getLength() + "\nHeight: " + getHeight()
+          + "\nColor: " + getColor() + "\nAmount in storage: " + getAmountInStorage()
+          + "\nCategory number: " + getCategoryNumber();
+    }
   }
 }
