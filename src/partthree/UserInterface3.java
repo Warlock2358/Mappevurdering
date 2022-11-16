@@ -67,13 +67,15 @@ public class UserInterface3 {
           System.out.println("Enter category number: ");
           int categoryNumber = scanner.nextInt();
           scanner.nextLine();
-          try {
-            itemRegister3.addItem(itemNumber, description, price, discount, brandName, weight,
-                length, height,
-                color, amountInStorage, categoryNumber);
-          } catch (Exception e) {
-            System.out.println(e.getMessage());
-          }
+//          try {
+//            itemRegister3.addItem(itemNumber, description, price, discount, brandName, weight,
+//                length, height,
+//                color, amountInStorage, categoryNumber);
+//          } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//          }
+          itemRegister3.addItem(itemNumber, description, price, discount, brandName, weight, length,
+              height, color, amountInStorage, categoryNumber);
         }
         case "get" -> {
           System.out.println("Enter item number: ");

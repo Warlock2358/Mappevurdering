@@ -48,8 +48,12 @@ public class Item3 {
       String brandName,
       double weight, double length, double height, String color,
       int amountInStorage, int categoryNumber) {
-    checkValues(price, discount, weight, length, height, amountInStorage, categoryNumber);
-    checkStrings(itemNumber, description, brandName, color);
+    try {
+      checkValues(price, discount, weight, length, height, amountInStorage, categoryNumber);
+      checkStrings(itemNumber, description, brandName, color);
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+    }
     this.itemNumber = itemNumber;
     this.description = description;
     this.price = price;

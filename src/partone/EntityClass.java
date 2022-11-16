@@ -5,7 +5,7 @@ package partone;
  * methods and a few set methods for each object that is created.
  *
  * @author Isak Mandal
- * @version 1.0
+ * @version 27.10.2022
  */
 
 public class EntityClass {
