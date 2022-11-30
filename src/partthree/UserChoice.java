@@ -15,7 +15,8 @@ public enum UserChoice {
   UPDATE_PRICE(9, "Update price"),
   UPDATE_DISCOUNT(10, "Update discount"),
   ITEM_OFF_SALE(11, "Item of sale"),
-  EXIT(12, "Exit");
+  UPDATE_ITEM_DESCRIPTION(12, "Update item description"),
+  EXIT(13, "Exit");
 
   private final int choiceNumber;
   private final String choiceName;

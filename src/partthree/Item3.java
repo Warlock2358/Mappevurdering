@@ -157,8 +157,8 @@ public class Item3 {
       throw new IllegalArgumentException("The category number must be between 1 and 4");
     }
 
-    if (itemNumber.length() > 20) {
-      throw new IllegalArgumentException("The item number must be less than 20 characters");
+    if (itemNumber.length() > 10) {
+      throw new IllegalArgumentException("The item number must be less than 10 characters");
     }
 
     if (description.length() > 10000) {
@@ -321,7 +321,8 @@ public class Item3 {
   @Override
   public String toString() {
     StringBuilder info = new StringBuilder();
-    info.append("\nItem information:").append("\nItem number: ").append(getItemNumber())
+    info.append("\n------------------------------").append("\nItem information:")
+        .append("\nItem number: ").append(getItemNumber())
         .append("\nDescription: ").append(getDescription());
     if (discount == 0) {
       info.append("\nPrice: ").append(getPrice());
@@ -332,7 +333,8 @@ public class Item3 {
     info.append("\nBrand name: ").append(getBrandName()).append("\nWeight: ").append(getWeight())
         .append("\nLength: ").append(getLength()).append("\nHeight: ").append(getHeight())
         .append("\nColor: ").append(getColor()).append("\nAmount in storage: ")
-        .append(getAmountInStorage()).append("\nCategory number: ").append(getCategoryNumber());
+        .append(getAmountInStorage()).append("\nCategory number: ").append(getCategoryNumber())
+        .append("\n------------------------------");
     return info.toString();
   }
 }

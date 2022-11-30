@@ -241,7 +241,7 @@ public class ItemRegister3 {
    * @param itemNumber  The item number of the item that is to be retrieved.
    * @param description The new description of the item.
    */
-  public void updateDescription(String itemNumber, String description) {
+  public void updateItemDescription(String itemNumber, String description) {
     for (Item3 item3 : item3List) {
       if (item3.getItemNumber().equals(itemNumber)) {
         item3.setDescription(description);

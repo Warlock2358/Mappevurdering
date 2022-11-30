@@ -30,31 +30,31 @@ public class UserInterface3 {
 
   public void testData() {
     try {
-      itemRegister3.addItem("123456789", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
+      itemRegister3.addItem("1123456789", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
           "Brown",
           100, 1);
-      itemRegister3.addItem("123456788", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
+      itemRegister3.addItem("1123456788", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
           "Yellow",
           100, 1);
-      itemRegister3.addItem("123456787", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
+      itemRegister3.addItem("1123456787", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
           "Green", 100, 1);
-      itemRegister3.addItem("000000001", "Window", 400, 0, "Window", 5, 100, 100, "White",
+      itemRegister3.addItem("2000000001", "Window", 400, 0, "Window", 5, 100, 100, "White",
           100, 2);
-      itemRegister3.addItem("000000002", "Stained window", 400, 0, "Window", 5, 50, 50, "Black",
+      itemRegister3.addItem("2000000002", "Stained window", 400, 0, "Window", 5, 50, 50, "Black",
           100, 2);
-      itemRegister3.addItem("000000003", "Small window", 250, 0, "Window", 5, 50, 50, "White",
+      itemRegister3.addItem("2000000003", "Small window", 250, 0, "Window", 5, 50, 50, "White",
           100, 2);
-      itemRegister3.addItem("000010000", "Old door", 500, 0, "Door", 10, 100, 200, "White",
+      itemRegister3.addItem("3000010000", "Old door", 500, 0, "Door", 10, 100, 200, "White",
           100, 3);
-      itemRegister3.addItem("000010001", "Modern door", 500, 0, "Door", 10, 100, 200, "Black",
+      itemRegister3.addItem("3000010001", "Modern door", 500, 0, "Door", 10, 100, 200, "Black",
           100, 3);
-      itemRegister3.addItem("000010002", "Plain door", 500, 0, "Door", 10, 100, 200, "Brown",
+      itemRegister3.addItem("3000010002", "Plain door", 500, 0, "Door", 10, 100, 200, "Brown",
           100, 3);
-      itemRegister3.addItem("001000000", "Planks", 100, 0, "Lumber", 10, 100, 100, "Brown",
+      itemRegister3.addItem("4001000000", "Planks", 100, 0, "Lumber", 10, 100, 100, "Brown",
           100, 4);
-      itemRegister3.addItem("001000001", "Planks", 300, 0, "Lumber", 10, 500, 500, "Yellow",
+      itemRegister3.addItem("4001000001", "Planks", 300, 0, "Lumber", 10, 500, 500, "Yellow",
           100, 4);
-      itemRegister3.addItem("001000002", "Planks", 500, 0, "Lumber", 10, 1000, 1000, "Green",
+      itemRegister3.addItem("4001000002", "Planks", 500, 0, "Lumber", 10, 1000, 1000, "Green",
           100, 4);
     } catch (Exception e) {
       System.out.println(e.getMessage());
@@ -81,6 +81,7 @@ public class UserInterface3 {
           case UPDATE_PRICE -> this.updatePrice();
           case UPDATE_DISCOUNT -> this.updateDiscount();
           case ITEM_OFF_SALE -> this.itemOffSale();
+          case UPDATE_ITEM_DESCRIPTION -> this.updateItemDescription();
           case EXIT -> {
             System.out.println("Thank you for using the Warehouse management system.");
             running = false;
@@ -124,7 +125,7 @@ public class UserInterface3 {
    * This method is used to add an item to the warehouse.
    */
   public void addItem() {
-    System.out.print("Enter item number: ");
+    System.out.print("Enter item number (Between 1 and 9 characters): ");
     String itemNumber = scanner.nextLine();
     System.out.print("Enter description: ");
     String description = scanner.nextLine();
@@ -150,7 +151,6 @@ public class UserInterface3 {
     System.out.print("Enter amount in storage: ");
     int amountInStorage = scanner.nextInt();
     scanner.nextLine();
-
     System.out.print("Enter category: ");
     int categoryChoice = scanner.nextInt();
     scanner.nextLine();
@@ -158,10 +158,22 @@ public class UserInterface3 {
     int category = 0;
     if (itemCategory != null) {
       switch (itemCategory) {
-        case FLOOR_LAMINATES -> category = 1;
-        case WINDOWS -> category = 2;
-        case DOORS -> category = 3;
-        case LUMBER -> category = 4;
+        case FLOOR_LAMINATES -> {
+          category = 1;
+          itemNumber = updateItemNumber(category, itemNumber);
+        }
+        case WINDOWS -> {
+          category = 2;
+          itemNumber = updateItemNumber(category, itemNumber);
+        }
+        case DOORS -> {
+          category = 3;
+          itemNumber = updateItemNumber(category, itemNumber);
+        }
+        case LUMBER -> {
+          category = 4;
+          itemNumber = updateItemNumber(category, itemNumber);
+        }
         default -> System.out.println("Invalid choice. Please enter a number 1 and 4.");
       }
     }
@@ -172,6 +184,25 @@ public class UserInterface3 {
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
+  }
+
+  private String updateItemNumber(int category, String itemNumber) {
+    int length = itemNumber.length();
+
+    switch (length) {
+      case 1 -> itemNumber = category + "00000000" + itemNumber;
+      case 2 -> itemNumber = category + "0000000" + itemNumber;
+      case 3 -> itemNumber = category + "000000" + itemNumber;
+      case 4 -> itemNumber = category + "00000" + itemNumber;
+      case 5 -> itemNumber = category + "0000" + itemNumber;
+      case 6 -> itemNumber = category + "000" + itemNumber;
+      case 7 -> itemNumber = category + "00" + itemNumber;
+      case 8 -> itemNumber = category + "0" + itemNumber;
+      case 9 -> itemNumber = category + itemNumber;
+      default -> System.out.println(
+          "Invalid item number. Please enter a number between 1 and 9 characters.");
+    }
+    return itemNumber;
   }
 
   /**
@@ -308,6 +339,22 @@ public class UserInterface3 {
     try {
       itemRegister3.itemOffSale(itemNumber);
       System.out.println("Discount was successfully removed from the item.");
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+  }
+
+  public void updateItemDescription() {
+    System.out.print("Enter item number: ");
+    String itemNumber = scanner.nextLine();
+    System.out.println(
+        "Here is the current description of the item: " + itemRegister3.getItem(itemNumber)
+            .getDescription());
+    System.out.print("Enter new description: ");
+    String description = scanner.nextLine();
+    try {
+      itemRegister3.updateItemDescription(itemNumber, description);
+      System.out.println("Description was successfully updated.");
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
