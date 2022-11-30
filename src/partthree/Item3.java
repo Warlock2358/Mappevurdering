@@ -12,7 +12,7 @@ public class Item3 {
 
   private final String itemNumber;
   private String description;
-  private int price;
+  private double price;
   private int discount;
   private final String brandName;
   private final double weight;
@@ -44,16 +44,12 @@ public class Item3 {
    *                        between 1 and 4.
    */
 
-  public Item3(String itemNumber, String description, int price, int discount,
+  public Item3(String itemNumber, String description, double price, int discount,
       String brandName,
       double weight, double length, double height, String color,
       int amountInStorage, int categoryNumber) {
-    try {
-      checkValues(price, discount, weight, length, height, amountInStorage, categoryNumber);
-      checkStrings(itemNumber, description, brandName, color);
-    } catch (IllegalArgumentException e) {
-      System.out.println(e.getMessage());
-    }
+    checkInput(itemNumber, description, price, discount, brandName, weight, length, height, color,
+        amountInStorage, categoryNumber);
     this.itemNumber = itemNumber;
     this.description = description;
     this.price = price;
@@ -68,27 +64,65 @@ public class Item3 {
   }
 
   /**
-   * This method takes the values of the variables given and checks if they comply with the
-   * restrictions given in the method. This method checks all the variables containing numbers.
+   * This method is used to create a clone of the item. Used in deep copies.
    *
+   * @param item The item that is to be cloned.
+   */
+  public Item3(Item3 item) {
+    this.itemNumber = item.getItemNumber();
+    this.description = item.getDescription();
+    this.price = item.getPrice();
+    this.discount = item.getDiscount();
+    this.brandName = item.getBrandName();
+    this.weight = item.getWeight();
+    this.length = item.getLength();
+    this.height = item.getHeight();
+    this.color = item.getColor();
+    this.categoryNumber = item.getCategoryNumber();
+    this.amountInStorage = item.getAmountInStorage();
+  }
+
+  /**
+   * This method takes the values of the variables given and checks if they comply with the
+   * restrictions given in the method.
+   *
+   * @param itemNumber      The item number of the item. Must be a string. Can contain numbers and
+   *                        letters, but no special characters or spaces.
+   * @param description     The description of the item. Must be a string. Can contain all
+   *                        characters.
    * @param price           The price of the item. Must be a positive integer. It must be greater
    *                        than 0 and less than 100000.
    * @param discount        The discount of the item. Must be a positive integer. It must be between
    *                        0 and 100.
+   * @param brandName       The brand name of the item. Must be a string. Can contain all
+   *                        characters.
    * @param weight          The weight of the item. Must be a positive double. It must be greater
    *                        than 0 and less than 100000.
    * @param length          The length of the item. Must be a positive double. It must be greater
    *                        than 0 and less than 1000.
    * @param height          The height of the item. Must be a positive double. It must be greater
    *                        than 0 and less than 1000.
+   * @param color           The color of the item. Must be a string. It can only contain letters.
    * @param amountInStorage The amount of the item in storage. Must be a positive integer. It must
    *                        be greater than 0.
    * @param categoryNumber  The category number of the item. Must be a positive integer. It must be
    *                        between 1 and 4.
    */
-
-  private void checkValues(int price, int discount, double weight, double length, double height,
+  private void checkInput(String itemNumber, String description, double price, int discount,
+      String brandName, double weight, double length, double height, String color,
       int amountInStorage, int categoryNumber) {
+    if (itemNumber.isBlank() || description.isBlank() || brandName.isBlank() || color.isBlank()) {
+      throw new IllegalArgumentException("The item number, description, brand name and color must "
+          + "not be empty");
+    }
+
+    for (int i = 0; i < itemNumber.length(); i++) {
+      if (!Character.isDigit(itemNumber.charAt(i)) && !Character.isAlphabetic(
+          itemNumber.charAt(i)) || itemNumber.charAt(i) == ' ') {
+        throw new IllegalArgumentException("The item number must only contain digits and letters");
+      }
+    }
+
     if (price < 0 || price > 100000) {
       throw new IllegalArgumentException("The price must be between 0 and 1000000");
     }
@@ -109,49 +143,18 @@ public class Item3 {
       throw new IllegalArgumentException("The height must be between 0 and 1000");
     }
 
+    for (int i = 0; i < color.length(); i++) {
+      if (!Character.isAlphabetic(color.charAt(i))) {
+        throw new IllegalArgumentException("The color must only contain letters");
+      }
+    }
+
     if (amountInStorage < 0) {
       throw new IllegalArgumentException("The amount in storage must be greater than zero");
     }
 
     if (categoryNumber < 1 || categoryNumber > 4) {
       throw new IllegalArgumentException("The category number must be between 1 and 4");
-    }
-  }
-
-  /**
-   * This method takes the values of the variables given and checks if they comply with the
-   * restrictions given in the method. This method check all the String variables.
-   *
-   * @param itemNumber  The item number of the item. Must be a string. Can contain numbers and
-   *                    letters, but no special characters or spaces.
-   * @param description The description of the item. Must be a string. Can contain all characters.
-   * @param brandName   The brand name of the item. Must be a string. Can contain all characters.
-   * @param color       The color of the item. Must be a string. Can contain all characters.
-   */
-  private void checkStrings(String itemNumber, String description, String brandName,
-      String color) {
-    if (itemNumber.isBlank() || description.isBlank() || brandName.isBlank() || color.isBlank()) {
-      throw new IllegalArgumentException("The item number, description, brand name and color must "
-          + "not be empty");
-    }
-
-    for (int i = 0; i < itemNumber.length(); i++) {
-      if (!Character.isDigit(itemNumber.charAt(i)) && !Character.isAlphabetic(
-          itemNumber.charAt(i)) || itemNumber.charAt(i) == ' ') {
-        throw new IllegalArgumentException("The item number must only contain digits and letters");
-      }
-    }
-
-    for (int i = 0; i < brandName.length(); i++) {
-      if (!Character.isAlphabetic(brandName.charAt(i)) && brandName.charAt(i) != ' ') {
-        throw new IllegalArgumentException("The brand name must only contain letters");
-      }
-    }
-
-    for (int i = 0; i < color.length(); i++) {
-      if (!Character.isAlphabetic(color.charAt(i))) {
-        throw new IllegalArgumentException("The color must only contain letters");
-      }
     }
 
     if (itemNumber.length() > 20) {
@@ -204,7 +207,7 @@ public class Item3 {
    *
    * @return The price of the item. Returns a double.
    */
-  public int getPrice() {
+  public double getPrice() {
     return price;
   }
 
@@ -214,7 +217,7 @@ public class Item3 {
    * @param price The new price of the item. Must be a positive integer. It must be greater than 0
    *              and less than 100000.
    */
-  public void setPrice(int price) {
+  public void setPrice(double price) {
     if (price < 0 || price > 100000) {
       throw new IllegalArgumentException("The price must be between 0 and 1000000");
     }
@@ -239,7 +242,7 @@ public class Item3 {
   }
 
   public double getDiscountedPrice() {
-    return price - ((double) price * discount / 100);
+    return price - (price * discount / 100);
   }
 
   /**
@@ -317,19 +320,19 @@ public class Item3 {
 
   @Override
   public String toString() {
+    StringBuilder info = new StringBuilder();
+    info.append("\nItem information:").append("\nItem number: ").append(getItemNumber())
+        .append("\nDescription: ").append(getDescription());
     if (discount == 0) {
-      return "\nItem information:" + "\nItem number: " + getItemNumber() + "\nDescription: "
-          + getDescription() + "\nPrice: " + getPrice() + "\nBrand name: " + getBrandName()
-          + "\nWeight: " + getWeight() + "\nLength: " + getLength() + "\nHeight: " + getHeight()
-          + "\nColor: " + getColor() + "\nAmount in storage: " + getAmountInStorage()
-          + "\nCategory number: " + getCategoryNumber();
+      info.append("\nPrice: ").append(getPrice());
     } else {
-      return "\nItem information:" + "\nItem number: " + getItemNumber() + "\nDescription: "
-          + getDescription() + "\nPrice: " + getDiscountedPrice() + "\nBrand name: "
-          + getBrandName()
-          + "\nWeight: " + getWeight() + "\nLength: " + getLength() + "\nHeight: " + getHeight()
-          + "\nColor: " + getColor() + "\nAmount in storage: " + getAmountInStorage()
-          + "\nCategory number: " + getCategoryNumber();
+      info.append("\nPrice: ").append(getPrice()).append("\nDiscount: ").append(getDiscount())
+          .append("%").append("\nDiscounted price: ").append(getDiscountedPrice());
     }
+    info.append("\nBrand name: ").append(getBrandName()).append("\nWeight: ").append(getWeight())
+        .append("\nLength: ").append(getLength()).append("\nHeight: ").append(getHeight())
+        .append("\nColor: ").append(getColor()).append("\nAmount in storage: ")
+        .append(getAmountInStorage()).append("\nCategory number: ").append(getCategoryNumber());
+    return info.toString();
   }
 }

@@ -40,7 +40,7 @@ public class ItemRegister3 {
    * @param categoryNumber  The category number of the item. Must be a positive integer. It must be
    *                        between 1 and 4.
    */
-  public void addItem(String itemNumber, String description, int price, int discount,
+  public void addItem(String itemNumber, String description, double price, int discount,
       String brandName,
       double weight, double length, double height, String color, int amountInStorage,
       int categoryNumber) {
@@ -85,10 +85,11 @@ public class ItemRegister3 {
    *
    * @return The itemList.
    */
-  public List<Item3> getItemList() {
+  public ArrayList<Item3> getItemList() {
     ArrayList<Item3> item3ListCopy = new ArrayList<>();
     for (Item3 item3 : item3List) {
-      item3ListCopy.add(item3);
+      Item3 item3Copy = new Item3(item3);
+      item3ListCopy.add(item3Copy);
     }
     return item3ListCopy;
   }
@@ -127,7 +128,7 @@ public class ItemRegister3 {
    * @param categoryNumber The category number of the items that are to be counted.
    * @return The total number of items in storage for a specific category.
    */
-  public int getTotalNumberOfItemsInCategory(int categoryNumber) {
+  public int getNumberOfItemsInCategory(int categoryNumber) {
     int totalNumberOfItemsInCategory = 0;
     for (Item3 item3 : item3List) {
       if (item3.getCategoryNumber() == categoryNumber) {
@@ -143,7 +144,7 @@ public class ItemRegister3 {
    * @param itemNumber The item number of the item that is to be changed.
    * @param amount     The amount that the total number of items in storage is to be changed with.
    */
-  public void increaseTotalNumberOfItems(String itemNumber, int amount) {
+  public void increaseAmountInStorage(String itemNumber, int amount) {
     for (Item3 item3 : item3List) {
       if (item3.getItemNumber().equals(itemNumber)) {
         item3.setAmountInStorage(item3.getAmountInStorage() + amount);
@@ -157,7 +158,7 @@ public class ItemRegister3 {
    * @param itemNumber The item number of the item that is to be changed.
    * @param amount     The amount that the total number of items in storage is to be changed with.
    */
-  public void decreaseTotalNumberOfItems(String itemNumber, int amount) {
+  public void decreaseAmountInStorage(String itemNumber, int amount) {
     for (Item3 item3 : item3List) {
       if (item3.getItemNumber().equals(itemNumber)) {
         item3.setAmountInStorage(item3.getAmountInStorage() - amount);
@@ -171,7 +172,7 @@ public class ItemRegister3 {
    * @param itemNumber The item number of the item that is to be retrieved.
    * @return The price of the item. Or it returns 0 if the item is not found.
    */
-  public int getPrice(String itemNumber) {
+  public double getPrice(String itemNumber) {
     for (Item3 item3 : item3List) {
       if (item3.getItemNumber().equals(itemNumber)) {
         return item3.getPrice();
@@ -185,7 +186,7 @@ public class ItemRegister3 {
    *
    * @param itemNumber The item number of the item that is to be updated.
    */
-  public void updatePrice(String itemNumber, int price) {
+  public void updatePrice(String itemNumber, double price) {
     for (Item3 item3 : item3List) {
       if (item3.getItemNumber().equals(itemNumber)) {
         item3.setPrice(price);
@@ -217,19 +218,6 @@ public class ItemRegister3 {
     for (Item3 item3 : item3List) {
       if (item3.getItemNumber().equals(itemNumber)) {
         item3.setDiscount(discount);
-      }
-    }
-  }
-
-  /**
-   * This method is used to set price to the discounted price.
-   *
-   * @param itemNumber The item number of the item that is to be retrieved.
-   */
-  public void itemOnSale(String itemNumber) {
-    for (Item3 item3 : item3List) {
-      if (item3.getItemNumber().equals(itemNumber)) {
-        item3.getDiscountedPrice();
       }
     }
   }
