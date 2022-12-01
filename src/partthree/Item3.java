@@ -87,7 +87,7 @@ public class Item3 {
    * restrictions given in the method.
    *
    * @param itemNumber      The item number of the item. Must be a string. Can contain numbers and
-   *                        letters, but no special characters or spaces.
+   *                        letters, but no special characters or spaces. Can be up to 6 characters.
    * @param description     The description of the item. Must be a string. Can contain all
    *                        characters.
    * @param price           The price of the item. Must be a positive integer. It must be greater
@@ -157,7 +157,7 @@ public class Item3 {
       throw new IllegalArgumentException("The category number must be between 1 and 4");
     }
 
-    if (itemNumber.length() > 10) {
+    if (itemNumber.length() > 6) {
       throw new IllegalArgumentException("The item number must be less than 10 characters");
     }
 

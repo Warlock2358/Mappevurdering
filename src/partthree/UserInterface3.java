@@ -28,39 +28,48 @@ public class UserInterface3 {
     i.start();
   }
 
+
+  /**
+   * This method is used to add test data to the itemRegister.
+   */
   public void testData() {
     try {
-      itemRegister3.addItem("1123456789", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
+      itemRegister3.addItem("100004", "Floor laminate", 1000, 0, "Laminate", 10, 10, 10, "White",
+          10, 1);
+      itemRegister3.addItem("100000", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
           "Brown",
           100, 1);
-      itemRegister3.addItem("1123456788", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
+      itemRegister3.addItem("100001", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
           "Yellow",
           100, 1);
-      itemRegister3.addItem("1123456787", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
+      itemRegister3.addItem("100002", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
           "Green", 100, 1);
-      itemRegister3.addItem("2000000001", "Window", 400, 0, "Window", 5, 100, 100, "White",
+      itemRegister3.addItem("200000", "Window", 400, 0, "Window", 5, 100, 100, "White",
           100, 2);
-      itemRegister3.addItem("2000000002", "Stained window", 400, 0, "Window", 5, 50, 50, "Black",
+      itemRegister3.addItem("200001", "Stained window", 400, 0, "Window", 5, 50, 50, "Black",
           100, 2);
-      itemRegister3.addItem("2000000003", "Small window", 250, 0, "Window", 5, 50, 50, "White",
+      itemRegister3.addItem("200002", "Small window", 250, 0, "Window", 5, 50, 50, "White",
           100, 2);
-      itemRegister3.addItem("3000010000", "Old door", 500, 0, "Door", 10, 100, 200, "White",
+      itemRegister3.addItem("300000", "Old door", 500, 0, "Door", 10, 100, 200, "White",
           100, 3);
-      itemRegister3.addItem("3000010001", "Modern door", 500, 0, "Door", 10, 100, 200, "Black",
+      itemRegister3.addItem("300001", "Modern door", 500, 0, "Door", 10, 100, 200, "Black",
           100, 3);
-      itemRegister3.addItem("3000010002", "Plain door", 500, 0, "Door", 10, 100, 200, "Brown",
+      itemRegister3.addItem("300002", "Plain door", 500, 0, "Door", 10, 100, 200, "Brown",
           100, 3);
-      itemRegister3.addItem("4001000000", "Planks", 100, 0, "Lumber", 10, 100, 100, "Brown",
+      itemRegister3.addItem("400000", "Planks", 100, 0, "Lumber", 10, 100, 100, "Brown",
           100, 4);
-      itemRegister3.addItem("4001000001", "Planks", 300, 0, "Lumber", 10, 500, 500, "Yellow",
+      itemRegister3.addItem("400001", "Planks", 300, 0, "Lumber", 10, 500, 500, "Yellow",
           100, 4);
-      itemRegister3.addItem("4001000002", "Planks", 500, 0, "Lumber", 10, 1000, 1000, "Green",
+      itemRegister3.addItem("400002", "Planks", 500, 0, "Lumber", 10, 1000, 1000, "Green",
           100, 4);
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
   }
 
+  /**
+   * This method is used to start the program. It calls the menu method.
+   */
   public void start() {
     boolean running = true;
 
@@ -74,10 +83,13 @@ public class UserInterface3 {
           case REMOVE_ITEM -> this.removeItem();
           case GET_ITEM -> this.getItem();
           case GET_ALL_ITEMS -> this.getItemList();
+          case GET_ALL_ITEMS_IN_CATEGORY -> this.getAllItemsInCategory();
           case GET_NUMBER_OF_ITEMS -> this.getNumberOfItems();
           case GET_NUMBER_OF_ITEMS_BY_CATEGORY -> this.getNumberOfItemsInCategory();
           case INCREASE_AMOUNT_IN_STORAGE -> this.increaseAmountInStorage();
           case DECREASE_AMOUNT_IN_STORAGE -> this.decreaseAmountInStorage();
+          case SORT_ITEMS_BY_ASCENDING_PRICE -> this.sortItemsByAscendingPrice();
+          case SORT_ITEMS_BY_DESCENDING_PRICE -> this.sortItemsByDescendingPrice();
           case UPDATE_PRICE -> this.updatePrice();
           case UPDATE_DISCOUNT -> this.updateDiscount();
           case ITEM_OFF_SALE -> this.itemOffSale();
@@ -86,28 +98,38 @@ public class UserInterface3 {
             System.out.println("Thank you for using the Warehouse management system.");
             running = false;
           }
-          default -> System.out.println("Invalid choice. Please enter a number 1 and 12.");
+          default -> System.out.println("Invalid choice. Please enter a number 1 and 16.");
         }
       }
     }
   }
 
+  /**
+   * This method is used to show the menu to the user. It then returns the choice that the user
+   * entered.
+   *
+   * @return The choice that the user entered.
+   */
   public int showMenu() {
     int menuChoice = 0;
     String ls = System.lineSeparator();
-    System.out.println("Welcome to the Warehouse management system.");
+    System.out.println("\nWelcome to the Warehouse management system.");
     String menu = "1. Register item" + ls
         + "2. Remove item" + ls
         + "3. Get item" + ls
         + "4. Get all items" + ls
-        + "5. Get number of items" + ls
-        + "6. Get number of items by category" + ls
-        + "7. Increase amount in storage" + ls
-        + "8. Decrease amount in storage" + ls
-        + "9. Update price" + ls
-        + "10. Update discount" + ls
-        + "11. Item off sale" + ls
-        + "12. Exit";
+        + "5. Get all items in category" + ls
+        + "6. Get number of items" + ls
+        + "7. Get number of items in category" + ls
+        + "8. Increase amount in storage" + ls
+        + "9. Decrease amount in storage" + ls
+        + "10. Sort items by ascending price" + ls
+        + "11. Sort items by descending price" + ls
+        + "12. Update price" + ls
+        + "13. Update discount" + ls
+        + "14. Item off sale" + ls
+        + "15. Update item description" + ls
+        + "16. Exit";
 
     System.out.println(menu);
     System.out.print("Enter your choice: ");
@@ -115,7 +137,7 @@ public class UserInterface3 {
     try {
       menuChoice = Integer.parseInt(scanner.nextLine());
     } catch (NumberFormatException e) {
-      System.out.println("Invalid choice. Please enter a number 1 and 12.");
+      System.out.println("Invalid choice. Please enter a number 1 and 13.");
     }
 
     return menuChoice;
@@ -181,24 +203,28 @@ public class UserInterface3 {
     try {
       itemRegister3.addItem(itemNumber, description, price, discount, brandName, weight, length,
           height, color, amountInStorage, category);
+      System.out.println("Item added successfully.");
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
   }
 
+  /**
+   * This method is used to write the item number in the correct format.
+   *
+   * @param category   The category of the item.
+   * @param itemNumber The item number.
+   * @return The item number in the correct format.
+   */
   private String updateItemNumber(int category, String itemNumber) {
     int length = itemNumber.length();
 
     switch (length) {
-      case 1 -> itemNumber = category + "00000000" + itemNumber;
-      case 2 -> itemNumber = category + "0000000" + itemNumber;
-      case 3 -> itemNumber = category + "000000" + itemNumber;
-      case 4 -> itemNumber = category + "00000" + itemNumber;
-      case 5 -> itemNumber = category + "0000" + itemNumber;
-      case 6 -> itemNumber = category + "000" + itemNumber;
-      case 7 -> itemNumber = category + "00" + itemNumber;
-      case 8 -> itemNumber = category + "0" + itemNumber;
-      case 9 -> itemNumber = category + itemNumber;
+      case 1 -> itemNumber = category + "0000" + itemNumber;
+      case 2 -> itemNumber = category + "000" + itemNumber;
+      case 3 -> itemNumber = category + "00" + itemNumber;
+      case 4 -> itemNumber = category + "0" + itemNumber;
+      case 5 -> itemNumber = category + itemNumber;
       default -> System.out.println(
           "Invalid item number. Please enter a number between 1 and 9 characters.");
     }
@@ -242,6 +268,31 @@ public class UserInterface3 {
   }
 
   /**
+   * This method is used to get all the items in one category from the warehouse.
+   */
+  public void getAllItemsInCategory() {
+    System.out.print("Enter category: ");
+    int categoryChoice = scanner.nextInt();
+    scanner.nextLine();
+    ItemCategory itemCategory = ItemCategory.getCategory(categoryChoice);
+    int category = 0;
+    if (itemCategory != null) {
+      switch (itemCategory) {
+        case FLOOR_LAMINATES -> category = 1;
+        case WINDOWS -> category = 2;
+        case DOORS -> category = 3;
+        case LUMBER -> category = 4;
+        default -> System.out.println("Invalid choice. Please enter a number 1 and 4.");
+      }
+    }
+    try {
+      System.out.println(itemRegister3.getItemListForCategory(category));
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+  }
+
+  /**
    * This method is used to get the number of items in the warehouse.
    */
   public void getNumberOfItems() {
@@ -277,6 +328,9 @@ public class UserInterface3 {
     }
   }
 
+  /**
+   * This method is used to increase the amount of an item in the warehouse.
+   */
   public void increaseAmountInStorage() {
     System.out.print("Enter item number: ");
     String itemNumber = scanner.nextLine();
@@ -291,6 +345,9 @@ public class UserInterface3 {
     }
   }
 
+  /**
+   * This method is used to decrease the amount of an item in the warehouse.
+   */
   public void decreaseAmountInStorage() {
     System.out.print("Enter item number: ");
     String itemNumber = scanner.nextLine();
@@ -305,6 +362,20 @@ public class UserInterface3 {
     }
   }
 
+
+  public void sortItemsByAscendingPrice() {
+    System.out.println("Items sorted by ascending price:");
+    System.out.println(itemRegister3.sortItemsByAscendingPrice());
+  }
+
+  public void sortItemsByDescendingPrice() {
+    System.out.println("Items sorted by descending price:");
+    System.out.println(itemRegister3.sortItemsByDescendingPrice());
+  }
+
+  /**
+   * This method is used to update the price of an item in the warehouse.
+   */
   public void updatePrice() {
     System.out.print("Enter item number: ");
     String itemNumber = scanner.nextLine();
@@ -319,6 +390,9 @@ public class UserInterface3 {
     }
   }
 
+  /**
+   * This method is used to update the discount of an item in the warehouse.
+   */
   public void updateDiscount() {
     System.out.print("Enter item number: ");
     String itemNumber = scanner.nextLine();
@@ -333,6 +407,9 @@ public class UserInterface3 {
     }
   }
 
+  /**
+   * This method is used to remove the discount of an item in the warehouse.
+   */
   public void itemOffSale() {
     System.out.print("Enter item number: ");
     String itemNumber = scanner.nextLine();
@@ -344,6 +421,9 @@ public class UserInterface3 {
     }
   }
 
+  /**
+   * This method is used to update the description of an item in the warehouse.
+   */
   public void updateItemDescription() {
     System.out.print("Enter item number: ");
     String itemNumber = scanner.nextLine();
@@ -359,103 +439,4 @@ public class UserInterface3 {
       System.out.println(e.getMessage());
     }
   }
-//   {
-//     Scanner scanner = new Scanner(System.in);
-//     ItemRegister3 itemRegister3 = new ItemRegister3();
-//     String input = "";
-//     while (!input.equals("quit")) {
-//       System.out.println("Enter a command: ");
-//       input = scanner.nextLine();
-//       switch (input) {
-//         case "help" -> {
-//           System.out.println("Commands: ");
-//           System.out.println("help - shows this message");
-//           System.out.println("register - registers a new item");
-//           System.out.println("get - gets an item");
-//           System.out.println("getAll - gets all items");
-//           System.out.println("remove - removes an item");
-//           System.out.println("getNumItem - gets the total number of items");
-//           System.out.println("getNumItemCat - gets the total number of items in a category");
-//           System.out.println("incNumItem - increases the total number of items");
-//           System.out.println("decNumItem - decreases the total number of items");
-//           System.out.println("itemOffSale - removes the discount of an item");
-//           System.out.println("quit - quits the program");
-//         }
-//         case "register" -> {
-//           //          try {
-// //            itemRegister3.addItem(itemNumber, description, price, discount, brandName, weight,
-// //                length, height,
-// //                color, amountInStorage, categoryNumber);
-// //          } catch (Exception e) {
-// //            System.out.println(e.getMessage());
-// //          }
-// //        case "get" -> {
-// //          System.out.println("Enter item number: ");
-// //          String itemNumber = scanner.nextLine();
-// //          System.out.println(itemRegister3.getItem(itemNumber));
-// //        }
-// //        case "getAll" -> System.out.println(itemRegister3.getItemList());
-// //        case "remove" -> {
-// //          System.out.println("Enter item number: ");
-// //          String itemNumber = scanner.nextLine();
-// //          itemRegister3.removeItem(itemNumber);
-// //        }
-// //        case "getNumItem" -> System.out.println(itemRegister3.getTotalNumberOfItems());
-// //        case "getNumItemCat" -> {
-// //          System.out.println("Enter category number: ");
-// //          int categoryNumber = scanner.nextInt();
-// //          scanner.nextLine();
-// //          System.out.println(itemRegister3.getTotalNumberOfItemsInCategory(categoryNumber));
-// //        }
-// //        case "incNumItem" -> {
-// //          System.out.println("Enter item number: ");
-// //          String itemNumber = scanner.nextLine();
-// //          System.out.println("Enter amount to increase: ");
-// //          int amount = scanner.nextInt();
-// //          scanner.nextLine();
-// //          itemRegister3.increaseTotalNumberOfItems(itemNumber, amount);
-// //        }
-// //        case "decNumItem" -> {
-// //          System.out.println("Enter item number: ");
-// //          String itemNumber = scanner.nextLine();
-// //          System.out.println("Enter amount to decrease: ");
-// //          int amount = scanner.nextInt();
-// //          scanner.nextLine();
-// //          itemRegister3.decreaseTotalNumberOfItems(itemNumber, amount);
-// //        }
-// //        case "updatePrice" -> {
-// //          System.out.println("Enter item number: ");
-// //          String itemNumber = scanner.nextLine();
-// //          System.out.println("Enter new price: ");
-// //          int price = scanner.nextInt();
-// //          scanner.nextLine();
-// //          System.out.println(
-// //              itemNumber + " previous price " + itemRegister3.getPrice(itemNumber));
-// //          itemRegister3.updatePrice(itemNumber, price);
-// //          System.out.println(itemNumber + " price updated to " + price);
-// //        }
-// //        case "updateDiscount" -> {
-// //          System.out.println("Enter item number: ");
-// //          String itemNumber = scanner.nextLine();
-// //          System.out.println("Enter new discount: ");
-// //          int discount = scanner.nextInt();
-// //          scanner.nextLine();
-// //          System.out.println(
-// //              itemNumber + " previous discount " + itemRegister3.getDiscount(itemNumber));
-// //          itemRegister3.updateDiscount(itemNumber, discount);
-// //          System.out.println(itemNumber + " discount updated to " + discount);
-// //        }
-// //        case "itemOffSale" -> {
-// //          System.out.println("Enter item number: ");
-// //          String itemNumber = scanner.nextLine();
-// //          itemRegister3.itemOffSale(itemNumber);
-// //        }
-// //        case "quit" -> System.out.println("Quitting program");
-// //        default -> System.out.println("Unknown command");
-// //      }
-// //    }
-// //  }
-//         }
-//       }
-//   }
 }

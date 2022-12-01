@@ -91,6 +91,19 @@ public class ItemRegister3 {
       Item3 item3Copy = new Item3(item3);
       item3ListCopy.add(item3Copy);
     }
+    item3ListCopy.sort(new ItemNumberComparator());
+    return item3ListCopy;
+  }
+
+  public ArrayList<Item3> getItemListForCategory(int categoryNumber) {
+    ArrayList<Item3> item3ListCopy = new ArrayList<>();
+    for (Item3 item3 : item3List) {
+      if (item3.getCategoryNumber() == categoryNumber) {
+        Item3 item3Copy = new Item3(item3);
+        item3ListCopy.add(item3Copy);
+      }
+    }
+    item3ListCopy.sort(new ItemNumberComparator());
     return item3ListCopy;
   }
 
@@ -179,6 +192,26 @@ public class ItemRegister3 {
       }
     }
     return 0;
+  }
+
+  public ArrayList<Item3> sortItemsByAscendingPrice() {
+    ArrayList<Item3> item3ListCopy = new ArrayList<>();
+    for (Item3 item3 : item3List) {
+      Item3 item3Copy = new Item3(item3);
+      item3ListCopy.add(item3Copy);
+    }
+    item3ListCopy.sort(new IncreasingPriceComparator());
+    return item3ListCopy;
+  }
+
+  public ArrayList<Item3> sortItemsByDescendingPrice() {
+    ArrayList<Item3> item3ListCopy = new ArrayList<>();
+    for (Item3 item3 : item3List) {
+      Item3 item3Copy = new Item3(item3);
+      item3ListCopy.add(item3Copy);
+    }
+    item3ListCopy.sort(new DecreasingPriceComparator());
+    return item3ListCopy;
   }
 
   /**

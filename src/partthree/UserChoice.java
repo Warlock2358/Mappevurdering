@@ -8,15 +8,18 @@ public enum UserChoice {
   REMOVE_ITEM(2, "Remove item"),
   GET_ITEM(3, "Get item"),
   GET_ALL_ITEMS(4, "Get all items"),
-  GET_NUMBER_OF_ITEMS(5, "Get number of items"),
-  GET_NUMBER_OF_ITEMS_BY_CATEGORY(6, "Get number of items by category"),
-  INCREASE_AMOUNT_IN_STORAGE(7, "Increase amount in storage"),
-  DECREASE_AMOUNT_IN_STORAGE(8, "Decrease amount in storage"),
-  UPDATE_PRICE(9, "Update price"),
-  UPDATE_DISCOUNT(10, "Update discount"),
-  ITEM_OFF_SALE(11, "Item of sale"),
-  UPDATE_ITEM_DESCRIPTION(12, "Update item description"),
-  EXIT(13, "Exit");
+  GET_ALL_ITEMS_IN_CATEGORY(5, "Get all items by category"),
+  GET_NUMBER_OF_ITEMS(6, "Get number of items"),
+  GET_NUMBER_OF_ITEMS_BY_CATEGORY(7, "Get number of items by category"),
+  INCREASE_AMOUNT_IN_STORAGE(8, "Increase amount in storage"),
+  DECREASE_AMOUNT_IN_STORAGE(9, "Decrease amount in storage"),
+  SORT_ITEMS_BY_ASCENDING_PRICE(10, "Sort items by ascending price"),
+  SORT_ITEMS_BY_DESCENDING_PRICE(11, "Sort items by descending price"),
+  UPDATE_PRICE(12, "Update price"),
+  UPDATE_DISCOUNT(13, "Update discount"),
+  ITEM_OFF_SALE(14, "Item of sale"),
+  UPDATE_ITEM_DESCRIPTION(15, "Update item description"),
+  EXIT(16, "Exit");
 
   private final int choiceNumber;
   private final String choiceName;
