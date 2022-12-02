@@ -140,7 +140,7 @@ public class UserInterface3 {
     try {
       menuChoice = Integer.parseInt(scanner.nextLine());
     } catch (NumberFormatException e) {
-      System.out.println("Invalid choice. Please enter a number 1 and 13.");
+      System.out.println("Invalid choice. Please enter a number 1 and 17.");
     }
 
     return menuChoice;
