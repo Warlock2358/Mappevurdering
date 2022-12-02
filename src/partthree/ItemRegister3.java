@@ -1,7 +1,6 @@
 package partthree;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class is used to store and retrieve items in the warehouse. It has methods for changing the
@@ -50,7 +49,7 @@ public class ItemRegister3 {
   }
 
   /**
-   * This method is used to get an item from the itemList.
+   * This method is used to get an item from the itemList based on the item number.
    *
    * @param itemNumber The item number of the item that is to be retrieved. Must be a string. Can
    *                   contain numbers and letters.
@@ -66,18 +65,18 @@ public class ItemRegister3 {
   }
 
   /**
-   * This method is used to get all the items in the itemList of a specific category.
+   * This method is used to find an item based on the description.
    *
-   * @return The itemList of a category.
+   * @param description The description of the item that is to be retrieved. Must be a string.
+   * @return The item that has the description that was entered.
    */
-  public List<Item3> getCategoryItems(int categoryNumber) {
-    List<Item3> categoryItem3s = new ArrayList<>();
+  public Item3 getItemBasedOnDescription(String description) {
     for (Item3 item3 : item3List) {
-      if (item3.getCategoryNumber() == categoryNumber) {
-        categoryItem3s.add(item3);
+      if (item3.getDescription().equals(description)) {
+        return item3;
       }
     }
-    return categoryItem3s;
+    return null;
   }
 
   /**
@@ -95,6 +94,12 @@ public class ItemRegister3 {
     return item3ListCopy;
   }
 
+  /**
+   * This method is used to get the itemList for a specific category.
+   *
+   * @param categoryNumber The category number of the category that is to be retrieved. Must be a
+   * @return The itemList for the specific category.
+   */
   public ArrayList<Item3> getItemListForCategory(int categoryNumber) {
     ArrayList<Item3> item3ListCopy = new ArrayList<>();
     for (Item3 item3 : item3List) {
@@ -180,20 +185,10 @@ public class ItemRegister3 {
   }
 
   /**
-   * This method is used to get the price of an item.
+   * This method is used to print a list of all the items in ascending order of price.
    *
-   * @param itemNumber The item number of the item that is to be retrieved.
-   * @return The price of the item. Or it returns 0 if the item is not found.
+   * @return Returns an ArrayList of all the items in ascending order of price.
    */
-  public double getPrice(String itemNumber) {
-    for (Item3 item3 : item3List) {
-      if (item3.getItemNumber().equals(itemNumber)) {
-        return item3.getPrice();
-      }
-    }
-    return 0;
-  }
-
   public ArrayList<Item3> sortItemsByAscendingPrice() {
     ArrayList<Item3> item3ListCopy = new ArrayList<>();
     for (Item3 item3 : item3List) {
@@ -204,6 +199,11 @@ public class ItemRegister3 {
     return item3ListCopy;
   }
 
+  /**
+   * This method is used to print a list of all the items in descending order of price.
+   *
+   * @return Returns an ArrayList of all the items in descending order of price.
+   */
   public ArrayList<Item3> sortItemsByDescendingPrice() {
     ArrayList<Item3> item3ListCopy = new ArrayList<>();
     for (Item3 item3 : item3List) {
@@ -225,21 +225,6 @@ public class ItemRegister3 {
         item3.setPrice(price);
       }
     }
-  }
-
-  /**
-   * This method is used to get the discount of an item.
-   *
-   * @param itemNumber The item number of the item that is to be retrieved.
-   * @return The discount of the item. Or it returns 0 if the item is not found.
-   */
-  public int getDiscount(String itemNumber) {
-    for (Item3 item3 : item3List) {
-      if (item3.getItemNumber().equals(itemNumber)) {
-        return item3.getDiscount();
-      }
-    }
-    return 0;
   }
 
   /**

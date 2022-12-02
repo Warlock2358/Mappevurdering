@@ -2,6 +2,7 @@ package partthree;
 
 import java.util.Scanner;
 
+
 /**
  * This class is the user interface for the Warehouse management system. It has several methods that
  * interact with the user.
@@ -82,6 +83,7 @@ public class UserInterface3 {
           case REGISTER_ITEM -> this.addItem();
           case REMOVE_ITEM -> this.removeItem();
           case GET_ITEM -> this.getItem();
+          case GET_ITEM_BY_DESCRIPTION -> this.getItemBasedOnDescription();
           case GET_ALL_ITEMS -> this.getItemList();
           case GET_ALL_ITEMS_IN_CATEGORY -> this.getAllItemsInCategory();
           case GET_NUMBER_OF_ITEMS -> this.getNumberOfItems();
@@ -98,7 +100,7 @@ public class UserInterface3 {
             System.out.println("Thank you for using the Warehouse management system.");
             running = false;
           }
-          default -> System.out.println("Invalid choice. Please enter a number 1 and 16.");
+          default -> System.out.println("Invalid choice. Please enter a number 1 and 17.");
         }
       }
     }
@@ -117,19 +119,20 @@ public class UserInterface3 {
     String menu = "1. Register item" + ls
         + "2. Remove item" + ls
         + "3. Get item" + ls
-        + "4. Get all items" + ls
-        + "5. Get all items in category" + ls
-        + "6. Get number of items" + ls
-        + "7. Get number of items in category" + ls
-        + "8. Increase amount in storage" + ls
-        + "9. Decrease amount in storage" + ls
-        + "10. Sort items by ascending price" + ls
-        + "11. Sort items by descending price" + ls
-        + "12. Update price" + ls
-        + "13. Update discount" + ls
-        + "14. Item off sale" + ls
-        + "15. Update item description" + ls
-        + "16. Exit";
+        + "4. Get item by description" + ls
+        + "5. Get all items" + ls
+        + "6. Get all items in category" + ls
+        + "7. Get number of items" + ls
+        + "8. Get number of items in category" + ls
+        + "9. Increase amount in storage" + ls
+        + "10. Decrease amount in storage" + ls
+        + "11. Sort items by ascending price" + ls
+        + "12. Sort items by descending price" + ls
+        + "13. Update price" + ls
+        + "14. Update discount" + ls
+        + "15. Item off sale" + ls
+        + "16. Update item description" + ls
+        + "17. Exit";
 
     System.out.println(menu);
     System.out.print("Enter your choice: ");
@@ -253,6 +256,20 @@ public class UserInterface3 {
     String itemNumber = scanner.nextLine();
     try {
       Item3 item = itemRegister3.getItem(itemNumber);
+      System.out.println(item);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+  }
+
+  /**
+   * This method is used to get an item based on the description.
+   */
+  public void getItemBasedOnDescription() {
+    System.out.print("Enter description: ");
+    String description = scanner.nextLine();
+    try {
+      Item3 item = itemRegister3.getItemBasedOnDescription(description);
       System.out.println(item);
     } catch (Exception e) {
       System.out.println(e.getMessage());
