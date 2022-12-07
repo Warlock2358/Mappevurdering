@@ -3,7 +3,7 @@ package partthree;
 /**
  * This class is used to make the different choices more readable.
  */
-public enum ItemCategory {
+public enum ItemCategory3 {
   FLOOR_LAMINATES(1, "Floor laminates"),
   WINDOWS(2, "Windows"),
   DOORS(3, "Doors"),
@@ -12,7 +12,7 @@ public enum ItemCategory {
   private final int categoryNumber;
   private final String categoryName;
 
-  ItemCategory(int categoryNumber, String categoryName) {
+  ItemCategory3(int categoryNumber, String categoryName) {
     this.categoryNumber = categoryNumber;
     this.categoryName = categoryName;
   }
@@ -32,8 +32,8 @@ public enum ItemCategory {
    * @param categoryNumber The number of the category.
    * @return The category.
    */
-  public static ItemCategory getCategory(int categoryNumber) {
-    for (ItemCategory category : ItemCategory.values()) {
+  public static ItemCategory3 getCategory(int categoryNumber) {
+    for (ItemCategory3 category : ItemCategory3.values()) {
       if (category.getCategoryNumber() == categoryNumber) {
         return category;
       }

@@ -3,7 +3,7 @@ package partthree;
 /**
  * This class is used to make the different choices more readable.
  */
-public enum UserChoice {
+public enum UserChoice3 {
   REGISTER_ITEM(1, "Register item"),
   REMOVE_ITEM(2, "Remove item"),
   GET_ITEM(3, "Get item"),
@@ -25,7 +25,7 @@ public enum UserChoice {
   private final int choiceNumber;
   private final String choiceName;
 
-  UserChoice(int choiceNumber, String choiceName) {
+  UserChoice3(int choiceNumber, String choiceName) {
     this.choiceNumber = choiceNumber;
     this.choiceName = choiceName;
   }
@@ -44,8 +44,8 @@ public enum UserChoice {
    * @param choiceNumber The number of the choice.
    * @return The choice.
    */
-  public static UserChoice getChoice(int choiceNumber) {
-    for (UserChoice choice : UserChoice.values()) {
+  public static UserChoice3 getChoice(int choiceNumber) {
+    for (UserChoice3 choice : UserChoice3.values()) {
       if (choice.getChoiceNumber() == choiceNumber) {
         return choice;
       }

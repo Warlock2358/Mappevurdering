@@ -76,7 +76,7 @@ public class UserInterface3 {
 
     while (running) {
       int choice = this.showMenu();
-      UserChoice userChoice = UserChoice.getChoice(choice);
+      UserChoice3 userChoice = UserChoice3.getChoice(choice);
 
       if (userChoice != null) {
         switch (userChoice) {
@@ -179,7 +179,7 @@ public class UserInterface3 {
     System.out.print("Enter category: ");
     int categoryChoice = scanner.nextInt();
     scanner.nextLine();
-    ItemCategory itemCategory = ItemCategory.getCategory(categoryChoice);
+    ItemCategory3 itemCategory = ItemCategory3.getCategory(categoryChoice);
     int category = 0;
     if (itemCategory != null) {
       switch (itemCategory) {
@@ -262,6 +262,7 @@ public class UserInterface3 {
     }
   }
 
+
   /**
    * This method is used to get an item based on the description.
    */
@@ -291,7 +292,7 @@ public class UserInterface3 {
     System.out.print("Enter category: ");
     int categoryChoice = scanner.nextInt();
     scanner.nextLine();
-    ItemCategory itemCategory = ItemCategory.getCategory(categoryChoice);
+    ItemCategory3 itemCategory = ItemCategory3.getCategory(categoryChoice);
     int category = 0;
     if (itemCategory != null) {
       switch (itemCategory) {
@@ -324,7 +325,7 @@ public class UserInterface3 {
     System.out.print("Enter category: ");
     int categoryChoice = scanner.nextInt();
     scanner.nextLine();
-    ItemCategory itemCategory = ItemCategory.getCategory(categoryChoice);
+    ItemCategory3 itemCategory = ItemCategory3.getCategory(categoryChoice);
     int category = 0;
     if (itemCategory != null) {
       switch (itemCategory) {

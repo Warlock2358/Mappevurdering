@@ -87,7 +87,8 @@ public class Item3 {
    * restrictions given in the method.
    *
    * @param itemNumber      The item number of the item. Must be a string. Can contain numbers and
-   *                        letters, but no special characters or spaces. Can be up to 6 characters.
+   *                        letters, but no special characters or spaces. Can be up to 6
+   *                        characters.
    * @param description     The description of the item. Must be a string. Can contain all
    *                        characters.
    * @param price           The price of the item. Must be a positive integer. It must be greater
@@ -334,6 +335,22 @@ public class Item3 {
         .append("\nLength: ").append(getLength()).append("\nHeight: ").append(getHeight())
         .append("\nColor: ").append(getColor()).append("\nAmount in storage: ")
         .append(getAmountInStorage()).append("\nCategory number: ").append(getCategoryNumber())
+        .append("\n------------------------------");
+    return info.toString();
+  }
+
+  public String smallToString() {
+    StringBuilder info = new StringBuilder();
+    info.append("\n------------------------------").append("\nItem information:")
+        .append("\nItem number: ").append(getItemNumber())
+        .append("\nDescription: ").append(getDescription());
+    if (discount == 0) {
+      info.append("\nPrice: ").append(getPrice());
+    } else {
+      info.append("\nPrice: ").append(getPrice()).append("\nDiscount: ").append(getDiscount())
+          .append("%").append("\nDiscounted price: ").append(getDiscountedPrice());
+    }
+    info.append("Amount in storage: ").append(getAmountInStorage())
         .append("\n------------------------------");
     return info.toString();
   }
