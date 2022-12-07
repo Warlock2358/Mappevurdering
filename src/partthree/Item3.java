@@ -145,7 +145,7 @@ public class Item3 {
     }
 
     for (int i = 0; i < color.length(); i++) {
-      if (!Character.isAlphabetic(color.charAt(i))) {
+      if (!Character.isAlphabetic(color.charAt(i)) || color.charAt(i) == ' ') {
         throw new IllegalArgumentException("The color must only contain letters");
       }
     }
