@@ -37,7 +37,7 @@ public class UserInterface3 {
     try {
       itemRegister3.addItem("100004", "Plastic", 1000, 0, "TimberCraft", 10, 10, 10, "Fir green",
           10, 1);
-      itemRegister3.addItem("100000", "Engineered Wood", 100, 0, "Greystone", 10, 100, 100,
+      itemRegister3.addItem("100000", "Engineered Wood", 100, 0, "GreyStone", 10, 100, 100,
           "Orange", 100, 1);
       itemRegister3.addItem("100001", "Smooth", 100, 0, "Laminate", 10, 100, 100,
           "Yellow", 100, 1);
@@ -102,6 +102,8 @@ public class UserInterface3 {
           }
           default -> System.out.println("Invalid choice. Please enter a number 1 and 17.");
         }
+      } else {
+        System.out.println("Invalid choice. Please enter a number 1 and 17.");
       }
     }
   }
@@ -201,15 +203,18 @@ public class UserInterface3 {
         }
         default -> System.out.println("Invalid choice. Please enter a number 1 and 4.");
       }
+      try {
+        itemRegister3.addItem(itemNumber, description, price, discount, brandName, weight, length,
+            height, color, amountInStorage, category);
+        System.out.println("Item added successfully.");
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+      }
+    } else {
+      System.out.println("Invalid choice. Please enter a number 1 and 4.");
     }
 
-    try {
-      itemRegister3.addItem(itemNumber, description, price, discount, brandName, weight, length,
-          height, color, amountInStorage, category);
-      System.out.println("Item added successfully.");
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+
   }
 
   /**
@@ -302,11 +307,13 @@ public class UserInterface3 {
         case LUMBER -> category = 4;
         default -> System.out.println("Invalid choice. Please enter a number 1 and 4.");
       }
-    }
-    try {
-      System.out.println(itemRegister3.getItemListForCategory(category));
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
+      try {
+        System.out.println(itemRegister3.getItemListForCategory(category));
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+      }
+    } else {
+      System.out.println("Invalid choice. Please enter a number 1 and 4.");
     }
   }
 
@@ -358,6 +365,7 @@ public class UserInterface3 {
     try {
       itemRegister3.increaseAmountInStorage(itemNumber, amount);
       System.out.println("Amount in storage was successfully increased.");
+      System.out.println(itemRegister3.getItem(itemNumber).smallToString());
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
@@ -375,6 +383,7 @@ public class UserInterface3 {
     try {
       itemRegister3.decreaseAmountInStorage(itemNumber, amount);
       System.out.println("Amount in storage was successfully decreased.");
+      System.out.println(itemRegister3.getItem(itemNumber).smallToString());
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }

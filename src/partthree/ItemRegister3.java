@@ -176,16 +176,6 @@ public class ItemRegister3 {
    */
 
   public void increaseAmountInStorage(String itemNumber, int amount) {
-    //  for (Item3 item3 : item3List) {
-    //    if (item3.getItemNumber().equalsIgnoreCase(itemNumber)) {
-    //      if (amount < 0) {
-    //        throw new IllegalArgumentException("Amount to be added must be a positive integer");
-    //      }
-    //      item3.setAmountInStorage(item3.getAmountInStorage() + amount);
-    //    } else {
-    //      throw new IllegalArgumentException("Item number does not exist");
-    //    }
-    //   }
     if (amount < 0) {
       throw new IllegalArgumentException("Amount to be added must be a positive integer");
     }
@@ -203,16 +193,14 @@ public class ItemRegister3 {
    * @param amount     The amount that the total number of items in storage is to be changed with.
    */
   public void decreaseAmountInStorage(String itemNumber, int amount) {
-    for (Item3 item3 : item3List) {
-      if (item3.getItemNumber().equals(itemNumber)) {
-        if (amount < 0) {
-          throw new IllegalArgumentException("Amount to be removed must be a positive integer");
-        }
-        item3.setAmountInStorage(item3.getAmountInStorage() - amount);
-      } else {
-        throw new IllegalArgumentException("Item number does not exist");
-      }
+    if (amount < 0) {
+      throw new IllegalArgumentException("Amount to be added must be a positive integer");
     }
+    Item3 item3 = getItem(itemNumber);
+    if (item3 == null) {
+      throw new IllegalArgumentException("Item number does not exist");
+    }
+    item3.setAmountInStorage(item3.getAmountInStorage() - amount);
   }
 
   /**

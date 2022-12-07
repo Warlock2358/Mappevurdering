@@ -145,7 +145,7 @@ public class Item3 {
     }
 
     for (int i = 0; i < color.length(); i++) {
-      if (!Character.isAlphabetic(color.charAt(i)) || color.charAt(i) == ' ') {
+      if (!Character.isAlphabetic(color.charAt(i)) && color.charAt(i) != ' ') {
         throw new IllegalArgumentException("The color must only contain letters");
       }
     }
@@ -339,6 +339,12 @@ public class Item3 {
     return info.toString();
   }
 
+  /**
+   * This method is used to print a less informative version of the item information.
+   *
+   * @return A string with the item number, description, price, brand name, category number and
+   *         amount in storage.
+   */
   public String smallToString() {
     StringBuilder info = new StringBuilder();
     info.append("\n------------------------------").append("\nItem information:")
@@ -350,7 +356,8 @@ public class Item3 {
       info.append("\nPrice: ").append(getPrice()).append("\nDiscount: ").append(getDiscount())
           .append("%").append("\nDiscounted price: ").append(getDiscountedPrice());
     }
-    info.append("Amount in storage: ").append(getAmountInStorage())
+    info.append("\nBrand name: ").append(getBrandName()).append("\nAmount in storage: ")
+        .append(getAmountInStorage()).append("\nCategory number: ").append(getCategoryNumber())
         .append("\n------------------------------");
     return info.toString();
   }
