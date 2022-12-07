@@ -43,9 +43,14 @@ public class ItemRegister3 {
       String brandName,
       double weight, double length, double height, String color, int amountInStorage,
       int categoryNumber) {
-    item3List.add(
-        new Item3(itemNumber, description, price, discount, brandName, weight, length, height,
-            color, amountInStorage, categoryNumber));
+    Item3 item3 = new Item3(itemNumber, description, price, discount, brandName, weight, length,
+        height, color, amountInStorage, categoryNumber);
+    for (Item3 item : item3List) {
+      if (item.getItemNumber().equalsIgnoreCase(item3.getItemNumber())) {
+        throw new IllegalArgumentException("Item number already exists");
+      }
+    }
+    item3List.add(item3);
   }
 
   /**

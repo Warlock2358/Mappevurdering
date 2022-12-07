@@ -35,19 +35,17 @@ public class UserInterface3 {
    */
   public void testData() {
     try {
-      itemRegister3.addItem("100004", "Floor laminate", 1000, 0, "Laminate", 10, 10, 10, "White",
+      itemRegister3.addItem("100004", "Plastic", 1000, 0, "TimberCraft", 10, 10, 10, "Fir green",
           10, 1);
-      itemRegister3.addItem("100000", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
-          "Brown",
-          100, 1);
-      itemRegister3.addItem("100001", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
-          "Yellow",
-          100, 1);
-      itemRegister3.addItem("100002", "Floor laminate", 100, 0, "Laminate", 10, 100, 100,
+      itemRegister3.addItem("100000", "Engineered Wood", 100, 0, "Greystone", 10, 100, 100,
+          "Orange", 100, 1);
+      itemRegister3.addItem("100001", "Smooth", 100, 0, "Laminate", 10, 100, 100,
+          "Yellow", 100, 1);
+      itemRegister3.addItem("100002", "Textured", 100, 0, "Laminate", 10, 100, 100,
           "Green", 100, 1);
-      itemRegister3.addItem("200000", "Window", 400, 0, "Window", 5, 100, 100, "White",
+      itemRegister3.addItem("200000", "Window", 400, 0, "Andersen", 5, 100, 100, "Orient red",
           100, 2);
-      itemRegister3.addItem("200001", "Stained window", 400, 0, "Window", 5, 50, 50, "Black",
+      itemRegister3.addItem("200001", "Stained window", 400, 0, "Marvin", 5, 50, 50, "Black",
           100, 2);
       itemRegister3.addItem("200002", "Small window", 250, 0, "Window", 5, 50, 50, "White",
           100, 2);
@@ -57,11 +55,13 @@ public class UserInterface3 {
           100, 3);
       itemRegister3.addItem("300002", "Plain door", 500, 0, "Door", 10, 100, 200, "Brown",
           100, 3);
-      itemRegister3.addItem("400000", "Planks", 100, 0, "Lumber", 10, 100, 100, "Brown",
+      itemRegister3.addItem("400000", "2x4 Planks", 100, 0, "Carrier Lumber", 10, 100, 100, "Brown",
           100, 4);
-      itemRegister3.addItem("400001", "Planks", 300, 0, "Lumber", 10, 500, 500, "Yellow",
+      itemRegister3.addItem("400001", "1x4 Planks", 300, 0, "Edgewood Lumber", 10, 500, 500,
+          "Yellow",
           100, 4);
-      itemRegister3.addItem("400002", "Planks", 500, 0, "Lumber", 10, 1000, 1000, "Green",
+      itemRegister3.addItem("400002", "4x4 Planks", 500, 0, "Plum Creek Lumber", 10, 1000, 1000,
+          "Green",
           100, 4);
     } catch (Exception e) {
       System.out.println(e.getMessage());
@@ -150,7 +150,7 @@ public class UserInterface3 {
    * This method is used to add an item to the warehouse.
    */
   public void addItem() {
-    System.out.print("Enter item number (Between 1 and 9 characters): ");
+    System.out.print("Enter item number (Between 1 and 5 characters): ");
     String itemNumber = scanner.nextLine();
     System.out.print("Enter description: ");
     String description = scanner.nextLine();
@@ -229,7 +229,7 @@ public class UserInterface3 {
       case 4 -> itemNumber = category + "0" + itemNumber;
       case 5 -> itemNumber = category + itemNumber;
       default -> System.out.println(
-          "Invalid item number. Please enter a number between 1 and 9 characters.");
+          "Invalid item number. Please enter a number between 1 and 5 characters.");
     }
     return itemNumber;
   }
