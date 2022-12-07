@@ -98,6 +98,7 @@ public class UserInterface3 {
           case UPDATE_ITEM_DESCRIPTION -> this.updateItemDescription();
           case EXIT -> {
             System.out.println("Thank you for using the Warehouse management system.");
+            System.out.println(userChoice.getChoiceName());
             running = false;
           }
           default -> System.out.println("Invalid choice. Please enter a number 1 and 17.");

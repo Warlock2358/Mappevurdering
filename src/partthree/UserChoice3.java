@@ -20,7 +20,7 @@ public enum UserChoice3 {
   UPDATE_DISCOUNT(14, "Update discount"),
   ITEM_OFF_SALE(15, "Item of sale"),
   UPDATE_ITEM_DESCRIPTION(16, "Update item description"),
-  EXIT(17, "Exit");
+  EXIT(17, "Exiting program...");
 
   private final int choiceNumber;
   private final String choiceName;
