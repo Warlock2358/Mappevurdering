@@ -194,7 +194,7 @@ public class ItemRegister3 {
    */
   public void decreaseAmountInStorage(String itemNumber, int amount) {
     if (amount < 0) {
-      throw new IllegalArgumentException("Amount to be added must be a positive integer");
+      throw new IllegalArgumentException("Amount to be removed must be a positive integer");
     }
     Item3 item3 = getItem(itemNumber);
     if (item3 == null) {
