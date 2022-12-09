@@ -6,5 +6,26 @@
         <language minSize="572" name="Java" />
       </Languages>
     </inspection_tool>
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_ConditionsBitwiseUsedInsteadofBoolean" enabled="true" level="SENSEI ERROR" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_GuiceInjectedFieldNotPublic" enabled="true" level="SENSEI WARNING" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_Immutabilityuseagetterratherthanpublicfield" enabled="true" level="SENSEI WARNING" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_ImmutableFieldsshouldbefinalandsetintheconstructor" enabled="true" level="SENSEI WARNING" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_Immutableavoidsettersthatreturnvalues" enabled="true" level="SENSEI WARNING" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_Immutableavoidvoidmethods" enabled="true" level="SENSEI WARNING" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_Immutabledefaultconstructorshouldsetfieldvaluesfromparameters" enabled="true" level="SENSEI WARNING" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_Immutabledeletepublicvoidsetters" enabled="true" level="SENSEI WARNING" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_Immutableusefinalclassestopreventextension" enabled="true" level="SENSEI WARNING" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_JUnitJUnit5testmethodsdonotneedtobepublic" enabled="true" level="SENSEI WARNING" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_JUnitJunit5Testclassesdonotneedtobepublic" enabled="true" level="SENSEI WARNING" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_JUnitMakeDisabledTestfromSKIPTHIS" enabled="true" level="SENSEI ERROR" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_JUnitinSkipThisTestremoveDisabledandreverttoSKIPTHIS" enabled="true" level="SENSEI WARNING" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_Junitdocslink" enabled="true" level="SENSEI INFO" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_Loggeraddlogger" enabled="true" level="SENSEI INFO" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_Loggeruseloggerinsteadofprintln" enabled="true" level="SENSEI ERROR" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_StaticClassescreateprivateconstructor" enabled="true" level="SENSEI ERROR" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_TestClassesinJUnit5donotneedtobepublic" enabled="true" level="SENSEI WARNING" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_learnaboutparameterizedtests" enabled="true" level="SENSEI INFO" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_remembertoadddisableddescription" enabled="true" level="SENSEI WARNING" enabled_by_default="true" />
+    <inspection_tool class="af9ccd15-0920-4b80-a670-d10c7607d4c3_sqlinjection-useaparameterizedquery" enabled="true" level="SENSEI ERROR" enabled_by_default="true" />
   </profile>
 </component>

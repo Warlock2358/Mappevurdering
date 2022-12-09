@@ -87,7 +87,8 @@ public class Item3 {
    * restrictions given in the method.
    *
    * @param itemNumber      The item number of the item. Must be a string. Can contain numbers and
-   *                        letters, but no special characters or spaces. Can be up to 6 characters.
+   *                        letters, but no special characters or spaces. Can be up to 6
+   *                        characters.
    * @param description     The description of the item. Must be a string. Can contain all
    *                        characters.
    * @param price           The price of the item. Must be a positive integer. It must be greater
@@ -144,7 +145,7 @@ public class Item3 {
     }
 
     for (int i = 0; i < color.length(); i++) {
-      if (!Character.isAlphabetic(color.charAt(i)) || color.charAt(i) == ' ') {
+      if (!Character.isAlphabetic(color.charAt(i)) && color.charAt(i) != ' ') {
         throw new IllegalArgumentException("The color must only contain letters");
       }
     }
@@ -333,6 +334,29 @@ public class Item3 {
     info.append("\nBrand name: ").append(getBrandName()).append("\nWeight: ").append(getWeight())
         .append("\nLength: ").append(getLength()).append("\nHeight: ").append(getHeight())
         .append("\nColor: ").append(getColor()).append("\nAmount in storage: ")
+        .append(getAmountInStorage()).append("\nCategory number: ").append(getCategoryNumber())
+        .append("\n------------------------------");
+    return info.toString();
+  }
+
+  /**
+   * This method is used to print a less informative version of the item information.
+   *
+   * @return A string with the item number, description, price, brand name, category number and
+   *         amount in storage.
+   */
+  public String smallToString() {
+    StringBuilder info = new StringBuilder();
+    info.append("\n------------------------------").append("\nItem information:")
+        .append("\nItem number: ").append(getItemNumber())
+        .append("\nDescription: ").append(getDescription());
+    if (discount == 0) {
+      info.append("\nPrice: ").append(getPrice());
+    } else {
+      info.append("\nPrice: ").append(getPrice()).append("\nDiscount: ").append(getDiscount())
+          .append("%").append("\nDiscounted price: ").append(getDiscountedPrice());
+    }
+    info.append("\nBrand name: ").append(getBrandName()).append("\nAmount in storage: ")
         .append(getAmountInStorage()).append("\nCategory number: ").append(getCategoryNumber())
         .append("\n------------------------------");
     return info.toString();

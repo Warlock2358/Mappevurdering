@@ -37,7 +37,7 @@ public class UserInterface3 {
     try {
       itemRegister3.addItem("100004", "Plastic", 1000, 0, "TimberCraft", 10, 10, 10, "Fir green",
           10, 1);
-      itemRegister3.addItem("100000", "Engineered Wood", 100, 0, "Greystone", 10, 100, 100,
+      itemRegister3.addItem("100000", "Engineered Wood", 100, 0, "GreyStone", 10, 100, 100,
           "Orange", 100, 1);
       itemRegister3.addItem("100001", "Smooth", 100, 0, "Laminate", 10, 100, 100,
           "Yellow", 100, 1);
@@ -76,7 +76,7 @@ public class UserInterface3 {
 
     while (running) {
       int choice = this.showMenu();
-      UserChoice userChoice = UserChoice.getChoice(choice);
+      UserChoice3 userChoice = UserChoice3.getChoice(choice);
 
       if (userChoice != null) {
         switch (userChoice) {
@@ -98,10 +98,13 @@ public class UserInterface3 {
           case UPDATE_ITEM_DESCRIPTION -> this.updateItemDescription();
           case EXIT -> {
             System.out.println("Thank you for using the Warehouse management system.");
+            System.out.println(userChoice.getChoiceName());
             running = false;
           }
           default -> System.out.println("Invalid choice. Please enter a number 1 and 17.");
         }
+      } else {
+        System.out.println("Invalid choice. Please enter a number 1 and 17.");
       }
     }
   }
@@ -150,65 +153,71 @@ public class UserInterface3 {
    * This method is used to add an item to the warehouse.
    */
   public void addItem() {
-    System.out.print("Enter item number (Between 1 and 5 characters): ");
-    String itemNumber = scanner.nextLine();
-    System.out.print("Enter description: ");
-    String description = scanner.nextLine();
-    System.out.print("Enter price: ");
-    double price = scanner.nextDouble();
-    scanner.nextLine();
-    System.out.print("Enter discount: ");
-    int discount = scanner.nextInt();
-    scanner.nextLine();
-    System.out.print("Enter brand name: ");
-    String brandName = scanner.nextLine();
-    System.out.print("Enter weight: ");
-    double weight = scanner.nextDouble();
-    scanner.nextLine();
-    System.out.print("Enter length: ");
-    double length = scanner.nextDouble();
-    scanner.nextLine();
-    System.out.print("Enter height: ");
-    double height = scanner.nextDouble();
-    scanner.nextLine();
-    System.out.print("Enter color: ");
-    String color = scanner.nextLine();
-    System.out.print("Enter amount in storage: ");
-    int amountInStorage = scanner.nextInt();
-    scanner.nextLine();
-    System.out.print("Enter category: ");
-    int categoryChoice = scanner.nextInt();
-    scanner.nextLine();
-    ItemCategory itemCategory = ItemCategory.getCategory(categoryChoice);
-    int category = 0;
-    if (itemCategory != null) {
-      switch (itemCategory) {
-        case FLOOR_LAMINATES -> {
-          category = 1;
-          itemNumber = updateItemNumber(category, itemNumber);
+    int i = 0;
+    while (i == 0) {
+      System.out.print("Enter item number (Between 1 and 5 characters): ");
+      String itemNumber = scanner.nextLine();
+      System.out.print("Enter description: ");
+      String description = scanner.nextLine();
+      System.out.print("Enter price: ");
+      double price = scanner.nextDouble();
+      scanner.nextLine();
+      System.out.print("Enter discount: ");
+      int discount = scanner.nextInt();
+      scanner.nextLine();
+      System.out.print("Enter brand name: ");
+      String brandName = scanner.nextLine();
+      System.out.print("Enter weight: ");
+      double weight = scanner.nextDouble();
+      scanner.nextLine();
+      System.out.print("Enter length: ");
+      double length = scanner.nextDouble();
+      scanner.nextLine();
+      System.out.print("Enter height: ");
+      double height = scanner.nextDouble();
+      scanner.nextLine();
+      System.out.print("Enter color: ");
+      String color = scanner.nextLine();
+      System.out.print("Enter amount in storage: ");
+      int amountInStorage = scanner.nextInt();
+      scanner.nextLine();
+      System.out.print("Enter category: ");
+      int categoryChoice = scanner.nextInt();
+      scanner.nextLine();
+      ItemCategory3 itemCategory = ItemCategory3.getCategory(categoryChoice);
+      int category = 0;
+      if (itemCategory != null) {
+        switch (itemCategory) {
+          case FLOOR_LAMINATES -> {
+            category = 1;
+            itemNumber = updateItemNumber(category, itemNumber);
+          }
+          case WINDOWS -> {
+            category = 2;
+            itemNumber = updateItemNumber(category, itemNumber);
+          }
+          case DOORS -> {
+            category = 3;
+            itemNumber = updateItemNumber(category, itemNumber);
+          }
+          case LUMBER -> {
+            category = 4;
+            itemNumber = updateItemNumber(category, itemNumber);
+          }
+          default -> System.out.println("Invalid choice. Please enter a number 1 and 4.");
         }
-        case WINDOWS -> {
-          category = 2;
-          itemNumber = updateItemNumber(category, itemNumber);
+        try {
+          itemRegister3.addItem(itemNumber, description, price, discount, brandName, weight, length,
+              height, color, amountInStorage, category);
+          System.out.println("Item added successfully.");
+        } catch (Exception e) {
+          System.out.println(e.getMessage());
+          i = tryAgain();
         }
-        case DOORS -> {
-          category = 3;
-          itemNumber = updateItemNumber(category, itemNumber);
-        }
-        case LUMBER -> {
-          category = 4;
-          itemNumber = updateItemNumber(category, itemNumber);
-        }
-        default -> System.out.println("Invalid choice. Please enter a number 1 and 4.");
+      } else {
+        System.out.println("Invalid choice. Please enter a number 1 and 4.");
+        i = tryAgain();
       }
-    }
-
-    try {
-      itemRegister3.addItem(itemNumber, description, price, discount, brandName, weight, length,
-          height, color, amountInStorage, category);
-      System.out.println("Item added successfully.");
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
     }
   }
 
@@ -262,6 +271,7 @@ public class UserInterface3 {
     }
   }
 
+
   /**
    * This method is used to get an item based on the description.
    */
@@ -291,19 +301,15 @@ public class UserInterface3 {
     System.out.print("Enter category: ");
     int categoryChoice = scanner.nextInt();
     scanner.nextLine();
-    ItemCategory itemCategory = ItemCategory.getCategory(categoryChoice);
-    int category = 0;
-    if (itemCategory != null) {
-      switch (itemCategory) {
-        case FLOOR_LAMINATES -> category = 1;
-        case WINDOWS -> category = 2;
-        case DOORS -> category = 3;
-        case LUMBER -> category = 4;
-        default -> System.out.println("Invalid choice. Please enter a number 1 and 4.");
-      }
-    }
+    ItemCategory3 itemCategory = ItemCategory3.getCategory(categoryChoice);
     try {
-      System.out.println(itemRegister3.getItemListForCategory(category));
+      if (itemCategory != null) {
+        updateCategory(itemCategory);
+        System.out.println(itemRegister3.getItemListForCategory(updateCategory(itemCategory)));
+      } else {
+        System.out.println("Invalid choice. Please enter a number 1 and 4.");
+      }
+
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
@@ -324,22 +330,15 @@ public class UserInterface3 {
     System.out.print("Enter category: ");
     int categoryChoice = scanner.nextInt();
     scanner.nextLine();
-    ItemCategory itemCategory = ItemCategory.getCategory(categoryChoice);
-    int category = 0;
-    if (itemCategory != null) {
-      switch (itemCategory) {
-        case FLOOR_LAMINATES -> category = 1;
-        case WINDOWS -> category = 2;
-        case DOORS -> category = 3;
-        case LUMBER -> category = 4;
-        default -> System.out.println("Invalid choice. Please enter a number 1 and 4.");
-      }
-    }
+    ItemCategory3 itemCategory = ItemCategory3.getCategory(categoryChoice);
     try {
-      assert itemCategory != null;
-      System.out.println(
-          "Number of items in the warehouse in the category " + itemCategory.getCategoryName()
-              + ": " + itemRegister3.getNumberOfItemsInCategory(category));
+      if (itemCategory != null) {
+        System.out.println(
+            "Number of items in the warehouse in the category " + itemCategory.getCategoryName()
+                + ": " + itemRegister3.getNumberOfItemsInCategory(updateCategory(itemCategory)));
+      } else {
+        System.out.println("Invalid choice. Please enter a number 1 and 4.");
+      }
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
@@ -349,16 +348,21 @@ public class UserInterface3 {
    * This method is used to increase the amount of an item in the warehouse.
    */
   public void increaseAmountInStorage() {
-    System.out.print("Enter item number: ");
-    String itemNumber = scanner.nextLine();
-    System.out.print("Enter amount to increase: ");
-    int amount = scanner.nextInt();
-    scanner.nextLine();
-    try {
-      itemRegister3.increaseAmountInStorage(itemNumber, amount);
-      System.out.println("Amount in storage was successfully increased.");
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
+    int i = 0;
+    while (i == 0) {
+      System.out.print("Enter item number: ");
+      String itemNumber = scanner.nextLine();
+      System.out.print("Enter amount to increase: ");
+      int amount = scanner.nextInt();
+      scanner.nextLine();
+      try {
+        itemRegister3.increaseAmountInStorage(itemNumber, amount);
+        System.out.println("Amount in storage was successfully increased.");
+        System.out.println(itemRegister3.getItem(itemNumber).smallToString());
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+        i = tryAgain();
+      }
     }
   }
 
@@ -366,16 +370,21 @@ public class UserInterface3 {
    * This method is used to decrease the amount of an item in the warehouse.
    */
   public void decreaseAmountInStorage() {
-    System.out.print("Enter item number: ");
-    String itemNumber = scanner.nextLine();
-    System.out.print("Enter amount to decrease: ");
-    int amount = scanner.nextInt();
-    scanner.nextLine();
-    try {
-      itemRegister3.decreaseAmountInStorage(itemNumber, amount);
-      System.out.println("Amount in storage was successfully decreased.");
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
+    int i = 0;
+    while (i == 0) {
+      System.out.print("Enter item number: ");
+      String itemNumber = scanner.nextLine();
+      System.out.print("Enter amount to decrease: ");
+      int amount = scanner.nextInt();
+      scanner.nextLine();
+      try {
+        itemRegister3.decreaseAmountInStorage(itemNumber, amount);
+        System.out.println("Amount in storage was successfully decreased.");
+        System.out.println(itemRegister3.getItem(itemNumber).smallToString());
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+        i = tryAgain();
+      }
     }
   }
 
@@ -394,16 +403,23 @@ public class UserInterface3 {
    * This method is used to update the price of an item in the warehouse.
    */
   public void updatePrice() {
-    System.out.print("Enter item number: ");
-    String itemNumber = scanner.nextLine();
-    System.out.print("Enter new price: ");
-    double price = scanner.nextDouble();
-    scanner.nextLine();
-    try {
-      itemRegister3.updatePrice(itemNumber, price);
-      System.out.println("Price was successfully updated.");
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
+    int i = 0;
+    while (i == 0) {
+      System.out.print("Enter item number: ");
+      String itemNumber = scanner.nextLine();
+      System.out.print("Enter new price: ");
+      double price = scanner.nextDouble();
+      scanner.nextLine();
+      try {
+        itemRegister3.updatePrice(itemNumber, price);
+        if (itemRegister3.getItem(itemNumber) != null) {
+          System.out.println("Price was successfully updated.");
+          System.out.println(itemRegister3.getItem(itemNumber).smallToString());
+        }
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+        i = tryAgain();
+      }
     }
   }
 
@@ -411,16 +427,23 @@ public class UserInterface3 {
    * This method is used to update the discount of an item in the warehouse.
    */
   public void updateDiscount() {
-    System.out.print("Enter item number: ");
-    String itemNumber = scanner.nextLine();
-    System.out.print("Enter new discount: ");
-    int discount = scanner.nextInt();
-    scanner.nextLine();
-    try {
-      itemRegister3.updateDiscount(itemNumber, discount);
-      System.out.println("Discount was successfully updated.");
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
+    int i = 0;
+    while (i == 0) {
+      System.out.print("Enter item number: ");
+      String itemNumber = scanner.nextLine();
+      System.out.print("Enter new discount: ");
+      int discount = scanner.nextInt();
+      scanner.nextLine();
+      try {
+        itemRegister3.updateDiscount(itemNumber, discount);
+        if (itemRegister3.getItem(itemNumber) != null) {
+          System.out.println("Discount was successfully updated.");
+          System.out.println(itemRegister3.getItem(itemNumber).smallToString());
+        }
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+        i = tryAgain();
+      }
     }
   }
 
@@ -428,13 +451,20 @@ public class UserInterface3 {
    * This method is used to remove the discount of an item in the warehouse.
    */
   public void itemOffSale() {
-    System.out.print("Enter item number: ");
-    String itemNumber = scanner.nextLine();
-    try {
-      itemRegister3.itemOffSale(itemNumber);
-      System.out.println("Discount was successfully removed from the item.");
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
+    int i = 0;
+    while (i == 0) {
+      System.out.print("Enter item number: ");
+      String itemNumber = scanner.nextLine();
+      try {
+        itemRegister3.itemOffSale(itemNumber);
+        if (itemRegister3.getItem(itemNumber) != null) {
+          System.out.println("Discount was successfully removed.");
+          System.out.println(itemRegister3.getItem(itemNumber).smallToString());
+        }
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+        i = tryAgain();
+      }
     }
   }
 
@@ -442,18 +472,52 @@ public class UserInterface3 {
    * This method is used to update the description of an item in the warehouse.
    */
   public void updateItemDescription() {
-    System.out.print("Enter item number: ");
-    String itemNumber = scanner.nextLine();
-    System.out.println(
-        "Here is the current description of the item: " + itemRegister3.getItem(itemNumber)
-            .getDescription());
-    System.out.print("Enter new description: ");
-    String description = scanner.nextLine();
-    try {
-      itemRegister3.updateItemDescription(itemNumber, description);
-      System.out.println("Description was successfully updated.");
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
+    int i = 0;
+    while (i == 0) {
+      System.out.print("Enter item number: ");
+      String itemNumber = scanner.nextLine();
+      System.out.print("Enter new description: ");
+      String description = scanner.nextLine();
+      try {
+        itemRegister3.updateItemDescription(itemNumber, description);
+        if (itemRegister3.getItem(itemNumber) != null) {
+          System.out.println("Description was successfully updated.");
+          System.out.println(itemRegister3.getItem(itemNumber).smallToString());
+        }
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+        i = tryAgain();
+      }
+    }
+  }
+
+  private int updateCategory(ItemCategory3 itemCategory) {
+    int category = 0;
+    if (itemCategory != null) {
+      switch (itemCategory) {
+        case FLOOR_LAMINATES -> category = 1;
+        case WINDOWS -> category = 2;
+        case DOORS -> category = 3;
+        case LUMBER -> category = 4;
+        default -> System.out.println("Invalid choice. Please enter a number 1 and 4.");
+      }
+    } else {
+      System.out.println("Invalid choice. Please enter a number 1 and 4.");
+    }
+    return category;
+  }
+
+  private int tryAgain() {
+    while (true) {
+      System.out.println("Do you want to try again? (y = yes, n = no)");
+      String answer = scanner.nextLine();
+      if (answer.equalsIgnoreCase("y")) {
+        return 0;
+      } else if (answer.equalsIgnoreCase("n")) {
+        return 1;
+      } else {
+        System.out.println("Invalid choice. Please enter y or n.");
+      }
     }
   }
 }

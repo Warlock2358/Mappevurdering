@@ -1,6 +1,7 @@
 package partthree;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is used to store and retrieve items in the warehouse. It has methods for changing the
@@ -61,12 +62,13 @@ public class ItemRegister3 {
    * @return The item that has the item number that was entered.
    */
   public Item3 getItem(String itemNumber) {
-    for (Item3 item3 : item3List) {
-      if (item3.getItemNumber().equals(itemNumber)) {
-        return item3;
+    for (Item3 item : item3List) {
+      if (itemNumber.equalsIgnoreCase(item.getItemNumber())) {
+        return item;
       }
     }
-    return null;
+    throw new IllegalArgumentException(
+        "Based on the item number given, no item was found with a matching item number");
   }
 
   /**
@@ -76,10 +78,15 @@ public class ItemRegister3 {
    * @return The item that has the description that was entered.
    */
   public Item3 getItemBasedOnDescription(String description) {
-    for (Item3 item3 : item3List) {
-      if (item3.getDescription().equals(description)) {
-        return item3;
+    try {
+      for (Item3 item : item3List) {
+        if (item.getDescription().equalsIgnoreCase(description)) {
+          return item;
+        }
       }
+    } catch (IllegalArgumentException i) {
+      throw new IllegalArgumentException("Based on the description given, no item was found with a "
+          + "matching description");
     }
     return null;
   }
@@ -89,13 +96,13 @@ public class ItemRegister3 {
    *
    * @return The itemList.
    */
-  public ArrayList<Item3> getItemList() {
+  public List<Item3> getItemList() {
     ArrayList<Item3> item3ListCopy = new ArrayList<>();
     for (Item3 item3 : item3List) {
       Item3 item3Copy = new Item3(item3);
       item3ListCopy.add(item3Copy);
     }
-    item3ListCopy.sort(new ItemNumberComparator());
+    item3ListCopy.sort(new ItemNumberComparator3());
     return item3ListCopy;
   }
 
@@ -105,7 +112,7 @@ public class ItemRegister3 {
    * @param categoryNumber The category number of the category that is to be retrieved. Must be a
    * @return The itemList for the specific category.
    */
-  public ArrayList<Item3> getItemListForCategory(int categoryNumber) {
+  public List<Item3> getItemListForCategory(int categoryNumber) {
     ArrayList<Item3> item3ListCopy = new ArrayList<>();
     for (Item3 item3 : item3List) {
       if (item3.getCategoryNumber() == categoryNumber) {
@@ -113,7 +120,7 @@ public class ItemRegister3 {
         item3ListCopy.add(item3Copy);
       }
     }
-    item3ListCopy.sort(new ItemNumberComparator());
+    item3ListCopy.sort(new ItemNumberComparator3());
     return item3ListCopy;
   }
 
@@ -167,12 +174,16 @@ public class ItemRegister3 {
    * @param itemNumber The item number of the item that is to be changed.
    * @param amount     The amount that the total number of items in storage is to be changed with.
    */
+
   public void increaseAmountInStorage(String itemNumber, int amount) {
-    for (Item3 item3 : item3List) {
-      if (item3.getItemNumber().equals(itemNumber)) {
-        item3.setAmountInStorage(item3.getAmountInStorage() + amount);
-      }
+    if (amount < 0) {
+      throw new IllegalArgumentException("Amount to be added must be a positive integer");
     }
+    Item3 item3 = getItem(itemNumber);
+    if (item3 == null) {
+      throw new IllegalArgumentException("Item number does not exist");
+    }
+    item3.setAmountInStorage(item3.getAmountInStorage() + amount);
   }
 
   /**
@@ -182,11 +193,14 @@ public class ItemRegister3 {
    * @param amount     The amount that the total number of items in storage is to be changed with.
    */
   public void decreaseAmountInStorage(String itemNumber, int amount) {
-    for (Item3 item3 : item3List) {
-      if (item3.getItemNumber().equals(itemNumber)) {
-        item3.setAmountInStorage(item3.getAmountInStorage() - amount);
-      }
+    if (amount < 0) {
+      throw new IllegalArgumentException("Amount to be removed must be a positive integer");
     }
+    Item3 item3 = getItem(itemNumber);
+    if (item3 == null) {
+      throw new IllegalArgumentException("Item number does not exist");
+    }
+    item3.setAmountInStorage(item3.getAmountInStorage() - amount);
   }
 
   /**
@@ -194,13 +208,13 @@ public class ItemRegister3 {
    *
    * @return Returns an ArrayList of all the items in ascending order of price.
    */
-  public ArrayList<Item3> sortItemsByAscendingPrice() {
+  public List<Item3> sortItemsByAscendingPrice() {
     ArrayList<Item3> item3ListCopy = new ArrayList<>();
     for (Item3 item3 : item3List) {
       Item3 item3Copy = new Item3(item3);
       item3ListCopy.add(item3Copy);
     }
-    item3ListCopy.sort(new IncreasingPriceComparator());
+    item3ListCopy.sort(new IncreasingPriceComparator3());
     return item3ListCopy;
   }
 
@@ -209,13 +223,13 @@ public class ItemRegister3 {
    *
    * @return Returns an ArrayList of all the items in descending order of price.
    */
-  public ArrayList<Item3> sortItemsByDescendingPrice() {
+  public List<Item3> sortItemsByDescendingPrice() {
     ArrayList<Item3> item3ListCopy = new ArrayList<>();
     for (Item3 item3 : item3List) {
       Item3 item3Copy = new Item3(item3);
       item3ListCopy.add(item3Copy);
     }
-    item3ListCopy.sort(new DecreasingPriceComparator());
+    item3ListCopy.sort(new DecreasingPriceComparator3());
     return item3ListCopy;
   }
 
