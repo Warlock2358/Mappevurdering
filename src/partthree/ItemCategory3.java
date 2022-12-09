@@ -2,6 +2,9 @@ package partthree;
 
 /**
  * This class is used to make the different choices more readable.
+ *
+ * @author Isak Mandal
+ * @version 09.12.2022
  */
 public enum ItemCategory3 {
   FLOOR_LAMINATES(1, "Floor laminates"),

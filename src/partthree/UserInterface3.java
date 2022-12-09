@@ -8,7 +8,7 @@ import java.util.Scanner;
  * interact with the user.
  *
  * @author Isak Mandal
- * @version 1.0
+ * @version 09.12.2022
  */
 public class UserInterface3 {
 

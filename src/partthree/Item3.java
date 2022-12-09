@@ -5,7 +5,7 @@ package partthree;
  * methods and a few set methods for each object that is created.
  *
  * @author Isak Mandal
- * @version 2.0
+ * @version 09.12.2022
  */
 
 public class Item3 {

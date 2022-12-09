@@ -9,7 +9,7 @@ import java.util.List;
  * has methods for retrieving the total number of items in storage for a specific category.
  *
  * @author Isak Mandal
- * @version 1.0
+ * @version 09.12.2022
  */
 public class ItemRegister3 {
 
