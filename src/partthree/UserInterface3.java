@@ -389,11 +389,17 @@ public class UserInterface3 {
   }
 
 
+  /**
+   * This method is used to sort the items in the warehouse by ascending order of price.
+   */
   public void sortItemsByAscendingPrice() {
     System.out.println("Items sorted by ascending price:");
     System.out.println(itemRegister3.sortItemsByAscendingPrice());
   }
 
+  /**
+   * This method is used to sort the items in the warehouse by descending order of price.
+   */
   public void sortItemsByDescendingPrice() {
     System.out.println("Items sorted by descending price:");
     System.out.println(itemRegister3.sortItemsByDescendingPrice());

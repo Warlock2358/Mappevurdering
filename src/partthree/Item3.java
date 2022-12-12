@@ -225,6 +225,11 @@ public class Item3 {
     this.price = price;
   }
 
+  /**
+   * This method is used to get the discount of the item.
+   *
+   * @return The discount of the item. Returns an integer.
+   */
   public int getDiscount() {
     return discount;
   }
@@ -242,6 +247,11 @@ public class Item3 {
     this.discount = discount;
   }
 
+  /**
+   * This method is used to get the discount price of the item.
+   *
+   * @return The discounted price of the item. Returns a double.
+   */
   public double getDiscountedPrice() {
     return price - (price * discount / 100);
   }

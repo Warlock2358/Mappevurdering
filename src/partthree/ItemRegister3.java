@@ -30,6 +30,7 @@ public class ItemRegister3 {
    *                        letters
    * @param description     The description of the item. Must be a string.
    * @param price           The price of the item. Must be a positive integer.
+   * @param discount        The discount of the item. Must be a positive integer.
    * @param brandName       The brand name of the item. Must be a string.
    * @param weight          The weight of the item. Must be a positive double.
    * @param length          The length of the item. Must be a positive double.
@@ -237,6 +238,7 @@ public class ItemRegister3 {
    * This method is used to update the price of an item.
    *
    * @param itemNumber The item number of the item that is to be updated.
+   * @param price      The new price of the item.
    */
   public void updatePrice(String itemNumber, double price) {
     for (Item3 item3 : item3List) {
@@ -250,6 +252,7 @@ public class ItemRegister3 {
    * This method is used to set the discount an item.
    *
    * @param itemNumber The item number of the item that is to be retrieved.
+   * @param discount   The discount of the item.
    */
   public void updateDiscount(String itemNumber, int discount) {
     for (Item3 item3 : item3List) {
